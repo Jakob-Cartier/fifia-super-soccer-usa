@@ -86,4 +86,28 @@
 
   const year = document.getElementById('current-year');
   if (year) year.textContent = String(new Date().getFullYear());
+
+
+  // Load optional player headshots. Supported formats: JPG, JPEG, PNG, and WebP.
+  // Keep filenames lowercase in assets/players (for example, brycen.jpg).
+  document.querySelectorAll('[data-player-photo]').forEach((image) => {
+    const player = image.dataset.playerPhoto;
+    const extensions = ['jpg', 'jpeg', 'png', 'webp'];
+    let attempt = 0;
+
+    const tryNextImage = () => {
+      if (attempt >= extensions.length) {
+        image.removeAttribute('src');
+        return;
+      }
+      image.src = `assets/players/${player}.${extensions[attempt++]}`;
+    };
+
+    image.addEventListener('load', () => {
+      image.closest('.player-card')?.classList.add('has-photo');
+    });
+    image.addEventListener('error', tryNextImage);
+    tryNextImage();
+  });
+
 })();
