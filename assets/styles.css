@@ -348,3 +348,59 @@ button { font: inherit; }
   color: #fff;
   text-shadow: 0 1px 6px rgba(0, 0, 0, .8);
 }
+
+
+/* Direct player PNGs and number badge overlay */
+.player-photo {
+  display: block !important;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 24%;
+  z-index: 1;
+}
+.player-silhouette { display: none !important; }
+.player-visual::after {
+  content: "";
+  position: absolute;
+  inset: 38% 0 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, rgba(4, 14, 32, .16) 40%, rgba(4, 14, 32, .78) 100%);
+}
+.player-number-overlay {
+  position: absolute;
+  top: 13px;
+  left: 13px;
+  z-index: 4;
+  min-width: 43px;
+  height: 43px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 9px;
+  color: #fff;
+  background: rgba(5, 20, 45, .88);
+  border: 1px solid rgba(255,255,255,.72);
+  border-top: 3px solid #d9273d;
+  box-shadow: 0 5px 18px rgba(0,0,0,.24);
+  font-size: 17px;
+  line-height: 1;
+  font-weight: 1000;
+  letter-spacing: -.04em;
+  font-variant-numeric: tabular-nums;
+}
+.player-watermark {
+  z-index: 3;
+  color: rgba(255,255,255,.17);
+  pointer-events: none;
+  text-shadow: 0 2px 12px rgba(0,0,0,.16);
+}
+.player-visual-white .player-watermark { color: rgba(255,255,255,.28); }
+.visual-role {
+  z-index: 4;
+  color: #fff !important;
+  text-shadow: 0 1px 7px rgba(0,0,0,.8);
+}
