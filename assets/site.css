@@ -157,3 +157,51 @@ body[data-theme="frost-white"] .announcement-bar{color:#fff}
 body[data-theme="frost-white"] .site-footer{background:#102b49}
 body[data-theme="aurora-ice"]{--bg:#071d2b;--bg2:#0c3548;--panel:#124257;--panel2:#1b5a6d;--text:#f2fcfa;--muted:#b1cfd1;--accent:#a6f0dc;--accent2:#c66d91;--line:rgba(205,246,240,.16);--soft:#d6fff3}
 body[data-theme="usa-classic"]{--bg:#07152e;--bg2:#0b2042;--panel:#102a4a;--panel2:#17395f;--text:#f4f8fc;--muted:#a8bad0;--accent:#9bdcff;--accent2:#e34f63;--line:rgba(214,235,255,.15);--soft:#d9eafa}
+
+
+/* Site-wide finishing polish */
+.brand-crest {
+  display: block;
+  width: 44px;
+  height: 52px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, .22));
+}
+.hero-art img {
+  display: block;
+  object-fit: contain;
+}
+.primary-nav > a[aria-current="page"] {
+  color: var(--accent);
+  position: relative;
+}
+.primary-nav > a[aria-current="page"]:not(.nav-cta)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -9px;
+  height: 2px;
+  background: var(--accent2);
+}
+a:focus-visible,
+button:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+.player-photo {
+  background: linear-gradient(145deg, var(--panel2), var(--bg2));
+}
+@media (max-width: 760px) {
+  .brand-crest { width: 39px; height: 46px; }
+  .primary-nav > a[aria-current="page"]:not(.nav-cta)::after {
+    display: none;
+  }
+  .primary-nav > a[aria-current="page"] {
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    padding-left: 12px;
+    border-left: 2px solid var(--accent2);
+  }
+}
