@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://fifasupersoccer-usnational.futbol/sitemap.xml
