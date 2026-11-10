@@ -6,31 +6,36 @@ A responsive, multi-page website for the custom USA National Team in Roblox FIFA
 
 - / — Home
 - /squad/ — Player profiles, headshots, roles, numbers, and descriptions
-- /lineup/ — Tactical lineup overview
+- /lineup/ — Starting group and substitute bench
 - /matches/ — Upcoming fixtures and results
 - /about/ — Team information
+- /apply/ — Player application form
 - /support/ — Website support and Tawk.to live chat
 
 Each section is a folder with its own index.html, so page URLs do not end in .html.
 
 ## Team branding
 
-The site logo and favicon use the existing PNG at assets/crest.png. Use this exact path when updating logos; there is no crest.svg file in this repository.
+The site logo and favicon use assets/crest.png.
 
-## Player headshots
+## Player headshots and roster
 
 Current photos are in assets/players/: kayden.png, brycen.png, tessa.png, and ruffles.png.
 
-## Team roster
-
 | Player | Position | Role | Number | Team duty |
 |---|---|---|---:|---|
-| Kayden | CM | Central Midfielder | 5 | Midfield |
+| Kayden | CM | Central Midfielder | 5 | Starter |
 | Brycen | RW | Forward | 10 | Captain |
-| Tessa | LW | Forward | 9 | Forward |
-| Ruffles | GK | Goalkeeper | 6 | Goalkeeper |
+| Tessa | LW | Forward | 9 | Starter |
+| Ruffles | RW | Attacking substitute | 6 | Substitute |
 
-Descriptions on the Squad page explain each player's position-based role and do not claim unconfirmed statistics or achievements.
+Player descriptions are position-based and do not claim unconfirmed statistics or achievements.
+
+## Application form email delivery
+
+The application form is on /apply/. It only requests a Roblox username and game-related details; it does not request a real name, personal email, phone number, age, school, or address.
+
+Email delivery uses FormSubmit. Before enabling submissions, set APPLICATION_INBOX in assets/apply.js to a shared, moderator-managed team inbox. The inbox owner must complete FormSubmit's first-use email confirmation. The recipient address is placed in the public website code when using the direct email endpoint, so use a shared team inbox rather than a personal address. Keep the application inbox moderated.
 
 ## Website themes
 
@@ -38,7 +43,7 @@ The site offers Winter Midnight, Frost White, Aurora Ice, and USA Classic. The s
 
 ## Support chat
 
-Tawk.to is loaded site-wide from assets/chat-widget.js. The account-specific widget code lives in that one shared file. The support inbox should be supervised by a trusted adult or designated moderator. Do not publish private player contact information.
+Tawk.to is loaded site-wide from assets/chat-widget.js. The support inbox should be supervised by a trusted adult or designated moderator. Do not publish private player contact information.
 
 ## Publish with GitHub Pages
 
