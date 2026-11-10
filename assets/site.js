@@ -48,6 +48,44 @@
       }
       matchLink.insertAdjacentElement("afterend", calendarLink);
     }
+
+    if (!nav.querySelector(".nav-dropdown")) {
+      const hub = document.createElement("div");
+      hub.className = "nav-dropdown";
+      const toggle = document.createElement("button");
+      toggle.type = "button";
+      toggle.className = "nav-dropdown-toggle";
+      toggle.textContent = "Team Hub ▾";
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-haspopup", "true");
+
+      const menu = document.createElement("div");
+      menu.className = "nav-dropdown-menu";
+      const hubLinks = [
+        ["/stats/", "Statistics Center"],
+        ["/awards/", "Player of the Match"],
+        ["/lineup/#formation-builder", "Formation Builder"],
+        ["/player-cards/", "Player Cards"],
+        ["/depth-chart/", "Squad Depth Chart"]
+      ];
+      hubLinks.forEach(([href, label]) => {
+        const link = document.createElement("a");
+        link.href = href;
+        link.textContent = label;
+        if (window.location.pathname.startsWith(href.split("#")[0]) && href.split("#")[0] !== "/") {
+          link.setAttribute("aria-current", "page");
+        }
+        menu.append(link);
+      });
+
+      toggle.addEventListener("click", () => {
+        const open = hub.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+      hub.append(toggle, menu);
+      const calendarLink = nav.querySelector('a[href="/calendar/"]') || matchLink;
+      calendarLink.insertAdjacentElement("afterend", hub);
+    }
   }
   if (menuButton && nav) {
     menuButton.addEventListener("click", () => {
@@ -60,6 +98,11 @@
       menuButton.setAttribute("aria-expanded", "false");
       menuButton.setAttribute("aria-label", "Open navigation");
       nav.classList.remove("open");
+      const dropdown = nav.querySelector(".nav-dropdown");
+      if (dropdown) {
+        dropdown.classList.remove("open");
+        dropdown.querySelector("button")?.setAttribute("aria-expanded", "false");
+      }
     }));
   }
 
