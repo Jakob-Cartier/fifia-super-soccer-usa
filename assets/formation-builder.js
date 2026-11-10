@@ -131,7 +131,7 @@
 
   formationSelect.addEventListener("change", () => {
     selectedFormation = formationSelect.value;
-    loadFormation(false);
+    loadFormation(true);
   });
   resetButton.addEventListener("click", () => {
     selectedFormation = "2-1";
