@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07172d">
+<meta name="description" content="Apply to join the custom USA National Team in Roblox FIFA Super Soccer.">
+<title>Apply to Join | USA National Team</title>
+<link rel="icon" href="/assets/crest.png" type="image/png">
+<link rel="stylesheet" href="/assets/site.css?v=4">
+<script src="/assets/site.js?v=3" defer></script>
+<script src="/assets/chat-widget.js?v=3" defer></script>
+<script src="/assets/apply.js?v=1" defer></script>
+</head>
+<body data-theme="winter-midnight">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="announcement-bar"><span class="announcement-dot" aria-hidden="true"></span><span>ROBLOX FIFA SUPER SOCCER</span><span class="announcement-divider" aria-hidden="true"></span><span class="announcement-muted">THE USA SQUAD</span></div>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="/" aria-label="USA National Team home"><img src="/assets/crest.png" alt="" class="brand-crest"><span class="brand-copy"><strong>UNITED STATES</strong><small>NATIONAL TEAM · ROBLOX</small></span></a>
+<button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button>
+<nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
+<a href="/squad/">The Squad</a><a href="/lineup/">Lineup</a><a href="/matches/">Match Center</a><a href="/about/">About</a><a href="/apply/" class="nav-apply" aria-current="page">Apply to join</a><a href="/support/">Support</a>
+<label class="theme-control"><span>THEME</span><select id="theme-picker" aria-label="Choose website theme"><option value="winter-midnight">Winter Midnight</option><option value="frost-white">Frost White</option><option value="aurora-ice">Aurora Ice</option><option value="usa-classic">USA Classic</option></select></label>
+</nav></div></header>
+
+<main id="main">
+<section class="page-hero"><div class="page-width"><div class="eyebrow"><span class="eyebrow-line"></span> RECRUITMENT · PLAYER APPLICATIONS</div><h1>JOIN THE <span>USA SQUAD.</span></h1><p>Think you could be a great addition to the team? Tell us your Roblox username, preferred role, and how you approach the game.</p><div class="breadcrumb">HOME / APPLY TO JOIN</div></div></section>
+<section class="content-section page-width">
+<div class="application-layout">
+<form class="panel application-form" id="team-application-form" method="POST">
+<input type="hidden" name="_subject" value="New USA National Team application">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_next" value="https://fifasupersoccer-usnational.futbol/apply/thanks/">
+<div class="form-grid">
+<div class="form-field full"><div class="eyebrow"><span class="eyebrow-line"></span> PLAYER DETAILS</div></div>
+<div class="form-field full"><label for="roblox-username">Roblox username *</label><input id="roblox-username" name="Roblox username" type="text" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]{3,20}" autocomplete="off" placeholder="Your Roblox username"><span class="field-help">Enter your Roblox username, not your password or verification code.</span></div>
+<div class="form-field"><label for="primary-role">Preferred position *</label><select id="primary-role" name="Preferred position" required><option value="">Choose a position</option><option>Right Wing Attacker (RW)</option><option>Left Wing Attacker (LW)</option><option>Central Midfielder (CM)</option><option>Goalkeeper (GK)</option><option>Attacking Substitute</option><option>Versatile / Flexible</option></select></div>
+<div class="form-field"><label for="secondary-role">Second position</label><select id="secondary-role" name="Second position"><option value="">No second preference</option><option>Right Wing Attacker (RW)</option><option>Left Wing Attacker (LW)</option><option>Central Midfielder (CM)</option><option>Goalkeeper (GK)</option><option>Attacking Substitute</option><option>Versatile / Flexible</option></select></div>
+<div class="form-field full"><label for="experience">Your FIFA Super Soccer experience *</label><textarea id="experience" name="Game experience" required maxlength="450" placeholder="Tell us about your experience, preferred play style, and teamwork."></textarea><span class="field-help">Keep it about the game. Maximum 450 characters.</span></div>
+<div class="form-field full"><label for="motivation">Why would you like to join the USA team? *</label><textarea id="motivation" name="Why join the team" required maxlength="450" placeholder="What would you bring to the squad?"></textarea><span class="field-help">Maximum 450 characters.</span></div>
+<div class="form-field full"><label for="availability">When do you usually play?</label><select id="availability" name="Typical availability"><option value="">Choose an option</option><option>Mostly weekdays</option><option>Mostly weekends</option><option>A mix of weekdays and weekends</option><option>My schedule varies</option></select></div>
+<div class="form-field full"><label class="form-checkbox"><input type="checkbox" name="Privacy confirmation" value="Confirmed" required><span>I confirm that my application only contains my Roblox username and game-related information. I have not included my real name, email address, phone number, school, home address, password, or other private details.</span></label></div>
+<!-- Honeypot anti-spam field used by FormSubmit. Keep it empty. -->
+<div class="form-field hidden-field" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
+</div>
+<div class="form-actions"><button class="button button-primary" type="submit" disabled>SUBMIT APPLICATION →</button><a class="button button-secondary" href="/squad/">VIEW THE SQUAD</a></div>
+<p class="form-status" id="application-status" role="status" aria-live="polite">The form is ready, but application delivery is not connected yet.</p>
+</form>
+<aside class="panel form-aside">
+<div class="eyebrow"><span class="eyebrow-line"></span> HOW IT WORKS</div><h2>YOUR SHOT AT THE SQUAD.</h2><div class="application-steps">
+<div class="application-step"><b>01</b><span><strong>Fill out the form.</strong><br>Use your Roblox username and tell us your preferred position.</span></div>
+<div class="application-step"><b>02</b><span><strong>Team review.</strong><br>A team moderator reviews the game-related details.</span></div>
+<div class="application-step"><b>03</b><span><strong>Follow-up.</strong><br>If the team wants to continue, a moderator will arrange next steps through an approved Roblox/team channel.</span></div>
+</div>
+<div class="privacy-note"><strong>Privacy matters.</strong> This form does not ask for your age, real name, personal email, phone number, school, or location. Never send passwords, verification codes, or private information.</div>
+<div style="margin-top:20px"><a class="feature-link" href="/support/">QUESTIONS? VISIT SUPPORT →</a></div>
+</aside>
+</div>
+</section>
+</main>
+<footer class="site-footer"><div class="page-width footer-main"><a class="brand" href="/"><img src="/assets/crest.png" alt="" class="brand-crest"><span class="brand-copy"><strong>UNITED STATES</strong><small>NATIONAL TEAM · ROBLOX</small></span></a><p class="footer-motto">ONE TEAM. ONE NATION.</p><a class="feature-link" href="/support/">SUPPORT THE TEAM →</a></div><div class="page-width footer-bottom"><span>© <span data-current-year>2026</span> USA NATIONAL TEAM · FAN-MADE ROBLOX TEAM WEBSITE</span><span class="disclaimer">Not affiliated with Roblox, EA SPORTS, FIFA, or U.S. Soccer.</span></div></footer><div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body></html>
