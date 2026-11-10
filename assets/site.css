@@ -301,3 +301,133 @@ select:focus-visible {
 }
 
 .hidden-field { display:none!important; }
+
+
+/* Global recruitment banner */
+.top-recruitment-banner {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 9px 22px;
+  background: linear-gradient(100deg, var(--panel2), color-mix(in srgb, var(--accent2) 25%, var(--panel)));
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.top-recruitment-label {
+  color: var(--accent);
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: .16em;
+}
+.top-recruitment-banner strong {
+  color: var(--text);
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: .1em;
+}
+.top-recruitment-banner a {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 11px;
+  border-radius: 3px;
+  background: var(--accent2);
+  color: #fff;
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: .1em;
+}
+.top-recruitment-banner a:hover { filter: brightness(1.12); }
+
+/* Flexible five-player roster and an initial-based placeholder for Mark's profile. */
+.player-grid { grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); }
+.player-photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background:
+    radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 54%),
+    linear-gradient(145deg, var(--panel2), var(--bg2));
+}
+.player-monogram {
+  width: 112px;
+  height: 112px;
+  display: grid;
+  place-items: center;
+  border: 2px solid color-mix(in srgb, var(--accent) 70%, white);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--bg) 65%, transparent);
+  color: var(--text);
+  font-size: 58px;
+  font-weight: 1000;
+  letter-spacing: -.06em;
+  box-shadow: 0 12px 28px #0004;
+}
+.player-placeholder-label {
+  color: var(--accent);
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: .2em;
+}
+.number-tbd { min-width: 58px; font-size: 12px; letter-spacing: .06em; }
+.player-tag-badge {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  z-index: 3;
+  padding: 7px 9px;
+  border-radius: 2px;
+  background: var(--accent2);
+  color: #fff;
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: .1em;
+}
+.goalkeeper-card { border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); }
+
+/* About the team */
+.team-info-section { padding-top: 0; }
+.team-purpose-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px; }
+.team-info-card { position: relative; min-height: 205px; padding: 24px; overflow: hidden; }
+.team-info-number { color: var(--accent2); font-size: 10px; font-weight: 950; letter-spacing: .14em; }
+.team-info-card h3 { margin: 13px 0 9px; font-size: 19px; }
+.team-info-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
+.team-expectations-section { padding-top: 0; }
+.team-expectations-layout { display: grid; grid-template-columns: .7fr 1.3fr; gap: 30px; align-items: start; }
+.team-expectations-layout h2 { margin: 14px 0; font-size: clamp(30px, 4vw, 42px); }
+.team-expectations { padding: 13px 25px; }
+.team-expectations ul { list-style: none; padding: 0; margin: 0; }
+.team-expectations li { display: grid; grid-template-columns: minmax(130px, .4fr) 1fr; gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.team-expectations li:last-child { border-bottom: 0; }
+.team-expectations li strong { color: var(--text); font-size: 11px; }
+.team-expectations li span { color: var(--muted); font-size: 11px; line-height: 1.7; }
+.team-roster-callout { padding-top: 0; padding-bottom: 35px; }
+.team-join-callout { padding-top: 0; }
+.team-join-panel { padding: 27px 30px; display: flex; align-items: center; justify-content: space-between; gap: 24px; background: linear-gradient(110deg, var(--panel), color-mix(in srgb, var(--accent) 12%, var(--panel))); }
+.team-join-panel h2 { margin: 10px 0 7px; font-size: clamp(26px, 4vw, 38px); }
+.team-join-panel p { max-width: 650px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
+
+/* Clear, scannable application requirements */
+.requirements-block { margin: 20px 0 22px; padding: 17px; border: 1px solid var(--line); border-radius: 5px; background: color-mix(in srgb, var(--accent) 5%, transparent); }
+.requirements-title { margin-bottom: 11px; color: var(--accent); font-size: 9px; font-weight: 950; letter-spacing: .15em; }
+.requirements-list { margin: 0; padding-left: 17px; }
+.requirements-list li { margin: 8px 0; color: var(--muted); font-size: 10px; line-height: 1.7; }
+.requirements-footnote { margin: 13px 0 0; color: var(--muted); font-size: 10px; line-height: 1.7; }
+
+@media (max-width: 760px) {
+  .top-recruitment-banner { gap: 7px 12px; flex-wrap: wrap; padding: 10px 14px; }
+  .top-recruitment-label { width: 100%; }
+  .top-recruitment-banner strong { font-size: 9px; }
+  .player-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .team-purpose-grid { grid-template-columns: 1fr; }
+  .team-info-card { min-height: 0; }
+  .team-expectations-layout { grid-template-columns: 1fr; gap: 17px; }
+  .team-expectations li { grid-template-columns: 1fr; gap: 5px; }
+  .team-join-panel { align-items: flex-start; flex-direction: column; padding: 22px; }
+}
+@media (max-width: 410px) {
+  .player-grid { grid-template-columns: 1fr; }
+}
