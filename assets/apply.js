@@ -2,40 +2,48 @@
   const form = document.querySelector("#team-application-form");
   if (!form) return;
 
-  // Set this to the team's shared, moderator-managed application inbox.
-  // Leave blank until the team has chosen and verified its inbox.
-  const APPLICATION_INBOX = "";
+  // Paste the Formspree form ID here after a trusted adult/team moderator
+  // creates the form and sets the private Target Email in the Formspree dashboard.
+  // Only the public form ID belongs in this file. Never put the inbox address here.
+  const FORMSPREE_FORM_ID = "";
 
   const submitButton = form.querySelector('button[type="submit"]');
   const status = document.querySelector("#application-status");
-  const nextField = form.querySelector('input[name="_next"]');
+  const errorBox = document.querySelector("#application-error");
 
-  const emailLooksValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(APPLICATION_INBOX);
+  const formIdIsReady = /^[a-zA-Z0-9]+$/.test(FORMSPREE_FORM_ID);
 
-  if (!emailLooksValid) {
+  if (!formIdIsReady) {
     if (submitButton) submitButton.disabled = true;
     if (status) {
-      status.textContent = "The form is ready, but application delivery is not connected yet. The team needs to choose its shared application inbox before submissions can be sent.";
+      status.textContent = "The application form is prepared, but delivery is not connected yet. A team moderator must create the Formspree form, set its private Target Email, and add the form ID to the site.";
     }
     return;
   }
 
-  // FormSubmit receives the form and emails it to the verified team inbox.
-  // Its first submission requires the inbox owner to confirm the address.
-  form.action = "https://formsubmit.co/" + APPLICATION_INBOX;
-  form.method = "POST";
-  if (nextField) nextField.value = "https://fifasupersoccer-usnational.futbol/apply/thanks/";
+  if (typeof window.formspree !== "function") {
+    if (submitButton) submitButton.disabled = true;
+    if (status) status.textContent = "The form service could not load. Please refresh the page or contact team support.";
+    return;
+  }
 
   if (submitButton) submitButton.disabled = false;
   if (status) {
     status.classList.add("ready");
-    status.textContent = "Application delivery is connected. Submissions will be sent to the team's verified inbox.";
+    status.textContent = "The application form is connected. Please review your game details before submitting.";
   }
 
-  form.addEventListener("submit", () => {
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.textContent = "SENDING APPLICATION…";
+  window.formspree("initForm", {
+    formElement: "#team-application-form",
+    formId: FORMSPREE_FORM_ID,
+    onSuccess: () => {
+      window.location.assign("/apply/thanks/");
+    },
+    onError: () => {
+      if (status) status.textContent = "Please check the form fields and try again.";
+    },
+    onFailure: () => {
+      if (status) status.textContent = "The application could not be sent. Please try again later or contact team support.";
     }
   });
 })();
