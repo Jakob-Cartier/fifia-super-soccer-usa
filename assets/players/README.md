@@ -1,12 +1,12 @@
-# Player headshots
+# Player portraits
 
-Upload each player photo into this folder using one of these exact filenames:
+Store player portraits in this folder using these lowercase filenames:
 
-- `kayden.jpg`
-- `brycen.jpg`
-- `tessa.jpg`
-- `ruffles.jpg`
+- `kayden.png`
+- `brycen.png`
+- `tessa.png`
+- `mark.png`
+- `ruffles.png`
 
-The website also tries `.jpeg`, `.png`, and `.webp` automatically. Keep filenames lowercase. Each photo appears on the matching roster card. If a photo is missing, the card keeps its USA-themed placeholder.
+The roster pages reference these exact paths. Use a clear portrait crop with the player centered; avoid uploading private personal details in an image.
 
-Recommended: portrait image, roughly 3:4 aspect ratio, with the player's face and shoulders centered.
