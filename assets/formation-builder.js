@@ -63,7 +63,7 @@
       select.id = "builder-player-" + slot.id;
       select.dataset.slot = slot.id;
       select.setAttribute("aria-label", slot.label);
-      players.forEach((player) => select.append(createPlayerOption(player, assignments[slot.id] || slot.defaultPlayer));
+      players.forEach((player) => select.append(createPlayerOption(player, assignments[slot.id] || slot.defaultPlayer)));
       select.addEventListener("change", () => {
         assignments[slot.id] = select.value;
         syncDisabledOptions();
