@@ -8,7 +8,7 @@ A responsive, multi-page website for the custom USA National Team in Roblox FIFA
 - /squad/ — Player profiles, headshots, roles, numbers, and descriptions
 - /lineup/ — Starting group and substitute bench
 - /matches/ — Upcoming fixtures and results
-- /about/ — Team information
+- /about/ — Team purpose, Roblox expectations, and membership information
 - /apply/ — Player application form
 - /support/ — Website support and Tawk.to live chat
 
@@ -18,22 +18,23 @@ Each section is a folder with its own index.html, so page URLs do not end in .ht
 
 | Player | Position | Role | Number | Team duty |
 |---|---|---|---:|---|
+| Mark | GK | Senior Goalkeeper | TBD | Starter |
 | Kayden | CM | Central Midfielder | 5 | Starter |
 | Brycen | RW | Forward | 10 | Captain |
 | Tessa | LW | Forward | 9 | Starter |
 | Ruffles | RW | Right-wing attacking substitute | 6 | Substitute |
 
-Player descriptions are position-based and do not claim unconfirmed statistics or achievements.
+Mark is listed as the senior goalkeeper. His squad number has not yet been assigned. Player descriptions are position-based and do not claim unconfirmed statistics or achievements.
 
 ## Player application form
 
 The application form is on /apply/. It collects a Roblox username and game-related details only. It does not ask for a real name, personal email address, phone number, age, school, or home address.
 
-Email delivery uses Formspree. A trusted adult or designated team moderator should create and supervise the Formspree project, then set the team's chosen shared inbox as the private Target Email in the Formspree dashboard. Do not put the receiving email address in this public repository.
+Email delivery uses Formspree's Vanilla JS (Ajax) integration, which fits this static HTML/JavaScript site and does not require React or a build step. The form posts to the public Formspree endpoint configured for this team. The public form ID is stored in assets/apply.js; the receiving inbox remains private in the Formspree dashboard. Do not put a personal receiving email address in this public repository.
 
-After the form is created, copy its Form ID from the Formspree dashboard and place it in the FORMSPREE_FORM_ID setting in assets/apply.js. The public Form ID is used by the website; the receiving email remains in the Formspree dashboard. The form remains disabled while the Form ID is blank.
+The application collects game-related information only. It does not ask applicants for their real name, age, personal email, phone number, school, or home address. A team moderator should review submissions and contact applicants only through an approved Roblox/team channel.
 
-Formspree's official setup guide: https://help.formspree.io/articles/building-your-form/building-an-html-form
+Formspree's AJAX guide: https://help.formspree.io/hc/en-us/articles/360013470814-Submit-forms-with-JavaScript-AJAX
 
 ## Website themes
 
