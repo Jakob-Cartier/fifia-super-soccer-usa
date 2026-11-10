@@ -331,6 +331,9 @@
   const refresh = byId("refresh-match-feed");
   if (refresh) refresh.addEventListener("click", () => window.location.reload());
 
+  const printLineup = byId("print-matchday");
+  if (printLineup) printLineup.addEventListener("click", () => window.print());
+
   renderLiveMatch();
   renderMatchLists();
   renderStandings();
