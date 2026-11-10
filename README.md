@@ -9,6 +9,11 @@ A responsive, multi-page website for the custom USA National Team in Roblox FIFA
 - /lineup/ — Starting group and substitute bench
 - /matches/ — Upcoming fixtures and results
 - /calendar/ — Interactive monthly calendar and upcoming team events
+- /stats/ — Player statistics center
+- /awards/ — Player of the Match award archive
+- /lineup/#formation-builder — Interactive formation builder
+- /player-cards/ — Collectible-style roster card gallery
+- /depth-chart/ — Current squad position coverage
 - /about/ — Team purpose, Roblox expectations, and membership information
 - /apply/ — Player application form
 - /support/ — Website support and Tawk.to live chat
@@ -42,6 +47,20 @@ Formspree guides: https://help.formspree.io/articles/building-your-form/building
 ## Team calendar and events
 
 The interactive calendar is at `/calendar/`. It displays month navigation, selectable dates, selected-day details, and an upcoming-events list. Confirmed events are added to `assets/events.js` in the `window.USA_TEAM_EVENTS` array. Each event uses `id`, `date` (`YYYY-MM-DD`), `title`, and optional `time`, `type`, `description`, `location`, and secure `https://` `url` fields. Keep the array empty until events are confirmed; do not invent matches or practice times.
+
+## Team statistics and awards
+
+The statistics center and Player of the Match archive use `assets/records.js`. Update `window.USA_TEAM_RECORDS.stats` after match records have been checked. Each player record supports `appearances`, `goals`, `assists`, `saves`, `cleanSheets`, and `rating`. Leave unknown values as `null`; the site will display a dash. Do not enter made-up totals or use zero to mean "not recorded."
+
+Add confirmed Player of the Match winners to `window.USA_TEAM_RECORDS.awards`. An award object supports `date`, `opponent`, `score`, `player`, `position`, and `reason`. Only publish an award after the team has confirmed the winner.
+
+## Formation builder
+
+The formation builder is part of `/lineup/`. Visitors can preview three outfield shapes and assign the three available outfield slots to Kayden, Brycen, Tessa, or Ruffles. Mark remains fixed in goal. It is a local preview only; changing the formation does not change or save the official lineup.
+
+## Player cards and squad depth
+
+The player card gallery and squad depth chart use the current roster information and portrait files in `assets/players/`. Keep each position and squad status consistent with the roster page when adding or changing players.
 
 ## Website themes
 
