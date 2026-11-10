@@ -7,7 +7,11 @@ A responsive, multi-page website for the custom USA National Team in Roblox FIFA
 - / — Home
 - /squad/ — Player profiles, headshots, roles, numbers, and descriptions
 - /lineup/ — Starting group and substitute bench
-- /matches/ — Upcoming fixtures and results
+- /matches/ — Live match center, scoreboard, fixtures, and results
+- /standings/ — Competition table and league standings
+- /reports/ — Match reports and highlights archive
+- /tournaments/ — Group tables and knockout brackets
+- /matchday/ — Official matchday lineup announcement and printable team sheet
 - /calendar/ — Interactive monthly calendar and upcoming team events
 - /stats/ — Player statistics center
 - /awards/ — Player of the Match award archive
@@ -61,6 +65,20 @@ The formation builder is part of `/lineup/`. Visitors can preview three outfield
 ## Player cards and squad depth
 
 The player card gallery and squad depth chart use the current roster information and portrait files in `assets/players/`. Keep each position and squad status consistent with the roster page when adding or changing players.
+
+## Match Center and competition tools
+
+The Live Match Center, standings, match reports, tournament bracket, and matchday team sheet share the data in `assets/match-data.js`. This is a static GitHub Pages data feed: updates become visible after staff edit and commit the file, GitHub Pages deploys the change, and visitors refresh the page. The site does not provide a secure browser-based staff editor or push-based live scoring.
+
+- `liveMatch`: current scoreboard, status, clock, venue, and match events. Set it to `null` when no match is live.
+- `fixtures`: confirmed upcoming matches with date, time, competition, opponent, and venue.
+- `results`: final verified scores. Each result can include a `reportId` linking to a report.
+- `standings`: competition name, updated date, and team rows with played, won, drawn, lost, goalsFor, and goalsAgainst. The table calculates goal difference and points (3 for a win, 1 for a draw).
+- `reports`: completed-match recaps with date, opponent, score, headline, summary, Player of the Match, and key moments.
+- `tournament`: optional competition name, group tables, and knockout rounds with confirmed fixtures and scores.
+- `matchday`: optional confirmed matchday announcement containing the opponent, date, kickoff, venue, formation, starters, substitutes, and note.
+
+Leave unknown sections as `null` or empty arrays. Do not create fictional match scores, tournament teams, standings, match events, or lineup announcements. The matchday page includes a print team-sheet action.
 
 ## Website themes
 
