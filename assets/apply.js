@@ -22,7 +22,7 @@
 
   // FormSubmit receives the form and emails it to the verified team inbox.
   // Its first submission requires the inbox owner to confirm the address.
-  form.action = "https://formsubmit.co/" + encodeURIComponent(APPLICATION_INBOX);
+  form.action = "https://formsubmit.co/" + APPLICATION_INBOX;
   form.method = "POST";
   if (nextField) nextField.value = "https://fifasupersoccer-usnational.futbol/apply/thanks/";
 
