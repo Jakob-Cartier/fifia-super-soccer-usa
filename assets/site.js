@@ -66,7 +66,11 @@
         ["/awards/", "Player of the Match"],
         ["/lineup/#formation-builder", "Formation Builder"],
         ["/player-cards/", "Player Cards"],
-        ["/depth-chart/", "Squad Depth Chart"]
+        ["/depth-chart/", "Squad Depth Chart"],
+        ["/standings/", "League Standings"],
+        ["/reports/", "Match Reports"],
+        ["/tournaments/", "Tournament Bracket"],
+        ["/matchday/", "Matchday Lineup"]
       ];
       hubLinks.forEach(([href, label]) => {
         const link = document.createElement("a");
