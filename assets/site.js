@@ -68,7 +68,7 @@
       "Kayden — CM — Central Midfielder — #5",
       "Brycen — RW — Captain — #10",
       "Tessa — LW — Forward — #9",
-      "Ruffles — GK — Goalkeeper — #6"
+      "Ruffles — RW — Attacking Substitute — #6"
     ].join("\\n");
     try {
       await navigator.clipboard.writeText(roster);
@@ -84,5 +84,5 @@
   // The live-chat widget is activated only after the team has its own account-specific embed code.
   // Do not put personal contact details or private player information in this public website.
   const chatState = document.querySelector("[data-chat-state]");
-  if (chatState) chatState.textContent = "Chat setup is pending a team support account.";
+  if (chatState) chatState.textContent = "Live chat is available in the Tawk.to bubble on this page.";
 })();
