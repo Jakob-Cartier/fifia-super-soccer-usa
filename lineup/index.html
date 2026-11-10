@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07172d"><meta name="description" content="View the USA National Team's Roblox FIFA Super Soccer positional lineup."><title>Team Lineup | USA National Team</title><link rel="icon" href="/assets/crest.png" type="image/png"><link rel="stylesheet" href="/assets/site.css?v=7"><script src="/assets/site.js?v=6" defer></script><script src="/assets/chat-widget.js?v=3" defer></script></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07172d"><meta name="description" content="View the USA National Team's Roblox FIFA Super Soccer positional lineup."><title>Team Lineup | USA National Team</title><link rel="icon" href="/assets/crest.png" type="image/png"><link rel="stylesheet" href="/assets/site.css?v=7"><script src="/assets/site.js?v=6" defer></script><script src="/assets/chat-widget.js?v=3" defer></script>
+<script src="/assets/formation-builder.js?v=1" defer></script></head>
 <body data-theme="winter-midnight">
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="announcement-bar"><span class="announcement-dot" aria-hidden="true"></span><span>ROBLOX FIFA SUPER SOCCER</span><span class="announcement-divider" aria-hidden="true"></span><span class="announcement-muted">THE USA SQUAD</span></div>
@@ -18,6 +19,35 @@
 <section class="content-section page-width"><div class="lineup-layout"><div class="lineup-copy"><div class="eyebrow"><span class="eyebrow-line"></span> TEAM SHAPE</div><h2>2 — 1 — <span>GK.</span></h2><p>Two wide forwards, one central midfielder, and Mark in goal make up the current positional group. Ruffles remains the right-wing attacking substitute. Mark’s squad number is still to be assigned. This is a positional overview, not a confirmed match-day selection.</p><div class="panel feature-panel"><div class="eyebrow">★ CAPTAIN</div><h3>Brycen · #10</h3><p>The captain leads from the right wing and represents the squad on the pitch.</p><a class="feature-link" href="/squad/">VIEW FULL PLAYER PROFILES →</a></div></div>
 <div class="pitch" role="img" aria-label="USA team positional diagram. Mark is the senior goalkeeper with number to be assigned; Tessa is left wing 9, Brycen is right wing 10 and captain, Kayden is central midfielder 5, and Ruffles number 6 is the right-wing attacking substitute."><div class="pitch-mid"></div><div class="pitch-circle"></div><div class="pitch-box pitch-box-top"></div><div class="pitch-box pitch-box-bottom"></div>
 <div class="pitch-player pitch-gk"><img class="pitch-avatar" src="/assets/players/mark.png" alt="Mark"><span class="pitch-shirt gk">GK</span>MARK<small>SENIOR GOALKEEPER · TBD</small></div><div class="pitch-player pitch-top-left"><span class="pitch-shirt">09</span>TESSA<small>LW</small></div><div class="pitch-player pitch-top-right"><span class="pitch-shirt">10</span>BRYCEN ★<small>RW · CAPTAIN</small></div><div class="pitch-player pitch-center"><span class="pitch-shirt">05</span>KAYDEN<small>CM</small></div></div><div class="panel substitute-card"><img src="/assets/players/ruffles.png" alt="Ruffles, right-wing attacking substitute"><div><small>ATTACKING SUBSTITUTE</small><strong>Ruffles · #6</strong><span>Right Wing cover</span></div><b>SUB</b></div></div>
+</section>
+<section class="content-section page-width formation-builder-section" id="formation-builder">
+  <div class="section-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> TACTICAL TOOL</div><h2>FORMATION <span>BUILDER.</span></h2><p class="section-intro">Experiment with your three outfield positions. Mark stays in goal; choose a formation and assign the remaining spots.</p></div></div>
+  <div class="panel formation-builder-panel">
+    <div class="builder-controls">
+      <label for="formation-select">FORMATION SHAPE
+        <select id="formation-select">
+          <option value="2-1">2–1 · Wide attack</option>
+          <option value="1-2">1–2 · Midfield support</option>
+          <option value="1-1-1">1–1–1 · Balanced</option>
+        </select>
+      </label>
+      <button class="button button-secondary" id="formation-reset" type="button">RESET POSITIONS</button>
+    </div>
+    <div class="builder-layout">
+      <div class="builder-pitch" id="builder-pitch" role="img" aria-label="Interactive formation preview. Mark is fixed in goal.">
+        <div class="builder-pitch-outline"></div><div class="builder-pitch-midline"></div><div class="builder-pitch-circle"></div>
+        <div class="builder-goalkeeper"><img src="/assets/players/mark.png" alt=""><strong>MARK</strong><small>GK · TBD</small></div>
+        <div id="builder-player-layer"></div>
+      </div>
+      <div class="builder-assignment-panel">
+        <div class="eyebrow"><span class="eyebrow-line"></span> PLAYER ASSIGNMENTS</div>
+        <div id="builder-slot-selects" class="builder-slot-selects"></div>
+        <p id="builder-warning" class="builder-warning" role="status" aria-live="polite">Choose a shape and assign players to see your formation.</p>
+        <div class="builder-bench"><strong>AVAILABLE SQUAD OPTIONS</strong><span>Kayden · Brycen · Tessa · Ruffles (substitute)</span></div>
+      </div>
+    </div>
+    <div class="builder-disclaimer">This is a planning tool, not an official match selection. Changes are a local preview and are not saved or published.</div>
+  </div>
 </section></main>
 <footer class="site-footer"><div class="page-width footer-main">
 <a class="brand" href="/"><img src="/assets/crest.png" alt="" class="brand-crest"><span class="brand-copy"><strong>UNITED STATES</strong><small>NATIONAL TEAM · ROBLOX</small></span></a>
