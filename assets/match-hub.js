@@ -264,7 +264,12 @@
       ["TEAM", "P", "W", "D", "L", "GD", "PTS"].forEach((value) => headRow.append(text("th", value)));
       thead.append(headRow);
       const tbody = document.createElement("tbody");
-      (Array.isArray(group.teams) ? group.teams : []).slice().sort((a, b) => number(b.points) - number(a.points)).forEach((team) => {
+      (Array.isArray(group.teams) ? group.teams : []).slice().sort((a, b) => {
+        const aPoints = a.points === null || a.points === undefined ? standingsValues(a).points : number(a.points);
+        const bPoints = b.points === null || b.points === undefined ? standingsValues(b).points : number(b.points);
+        const aValues = standingsValues(a), bValues = standingsValues(b);
+        return bPoints - aPoints || bValues.gd - aValues.gd || bValues.gf - aValues.gf;
+      }).forEach((team) => {
         const v = standingsValues(team);
         const row = document.createElement("tr");
         [team.team, v.played, v.won, v.drawn, v.lost, v.gd, team.points ?? v.points].forEach((value) => row.append(text("td", value)));
@@ -296,6 +301,7 @@
         away.append(text("strong", match.away || "TBA"));
         away.append(text("b", match.awayScore === null || match.awayScore === undefined ? "—" : match.awayScore));
         card.append(home, away);
+        if (match.winner) card.append(text("p", "ADVANCES · " + match.winner, "tournament-winner"));
         if (match.date) card.append(text("p", formatDate(match.date), "match-list-meta"));
         cards.append(card);
       });
