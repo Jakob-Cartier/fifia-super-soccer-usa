@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="/assets/site.css?v=5">
 <script src="/assets/site.js?v=4" defer></script>
 <script src="/assets/chat-widget.js?v=3" defer></script>
-<script src="/assets/apply.js?v=4" defer></script>
 </head>
 <body data-theme="winter-midnight">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -29,19 +28,18 @@
 <input type="hidden" name="_subject" value="New USA National Team application">
 <div class="form-grid">
 <div class="form-field full"><div class="eyebrow"><span class="eyebrow-line"></span> PLAYER DETAILS</div></div>
-<div class="form-field full"><label for="roblox-username">Roblox username *</label><input id="roblox-username" name="Roblox username" type="text" data-fs-field required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]{3,20}" autocomplete="off" placeholder="Your Roblox username"><span class="field-help">Enter your Roblox username, not your password or verification code.</span></div>
-<div class="form-field"><label for="primary-role">Preferred position *</label><select id="primary-role" name="Preferred position" data-fs-field required><option value="">Choose a position</option><option>Right Wing Attacker (RW)</option><option>Left Wing Attacker (LW)</option><option>Central Midfielder (CM)</option><option>Goalkeeper (GK)</option><option>Attacking Substitute</option><option>Versatile / Flexible</option></select></div>
-<div class="form-field"><label for="secondary-role">Second position</label><select id="secondary-role" name="Second position" data-fs-field><option value="">No second preference</option><option>Right Wing Attacker (RW)</option><option>Left Wing Attacker (LW)</option><option>Central Midfielder (CM)</option><option>Goalkeeper (GK)</option><option>Attacking Substitute</option><option>Versatile / Flexible</option></select></div>
-<div class="form-field full"><label for="experience">Your FIFA Super Soccer experience *</label><textarea id="experience" name="Game experience" data-fs-field required maxlength="450" placeholder="Tell us about your experience, preferred play style, and teamwork."></textarea><span class="field-help">Keep it about the game. Maximum 450 characters.</span></div>
-<div class="form-field full"><label for="motivation">Why would you like to join the USA team? *</label><textarea id="motivation" name="Why join the team" data-fs-field required maxlength="450" placeholder="What would you bring to the squad?"></textarea><span class="field-help">Maximum 450 characters.</span></div>
-<div class="form-field full"><label for="availability">When do you usually play?</label><select id="availability" name="Typical availability" data-fs-field><option value="">Choose an option</option><option>Mostly weekdays</option><option>Mostly weekends</option><option>A mix of weekdays and weekends</option><option>My schedule varies</option></select></div>
-<div class="form-field full"><label class="form-checkbox"><input type="checkbox" name="Privacy confirmation" value="Confirmed" data-fs-field required><span>I confirm that my application only contains my Roblox username and game-related information. I have not included my real name, email address, phone number, school, home address, password, or other private details.</span></label></div>
+<div class="form-field full"><label for="roblox-username">Roblox username *</label><input id="roblox-username" name="Roblox username" type="text" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]{3,20}" autocomplete="off" placeholder="Your Roblox username"><span class="field-help">Enter your Roblox username, not your password or verification code.</span></div>
+<div class="form-field"><label for="primary-role">Preferred position *</label><select id="primary-role" name="Preferred position" required><option value="">Choose a position</option><option>Right Wing Attacker (RW)</option><option>Left Wing Attacker (LW)</option><option>Central Midfielder (CM)</option><option>Goalkeeper (GK)</option><option>Attacking Substitute</option><option>Versatile / Flexible</option></select></div>
+<div class="form-field"><label for="secondary-role">Second position</label><select id="secondary-role" name="Second position"><option value="">No second preference</option><option>Right Wing Attacker (RW)</option><option>Left Wing Attacker (LW)</option><option>Central Midfielder (CM)</option><option>Goalkeeper (GK)</option><option>Attacking Substitute</option><option>Versatile / Flexible</option></select></div>
+<div class="form-field full"><label for="experience">Your FIFA Super Soccer experience *</label><textarea id="experience" name="Game experience" required maxlength="450" placeholder="Tell us about your experience, preferred play style, and teamwork."></textarea><span class="field-help">Keep it about the game. Maximum 450 characters.</span></div>
+<div class="form-field full"><label for="motivation">Why would you like to join the USA team? *</label><textarea id="motivation" name="Why join the team" required maxlength="450" placeholder="What would you bring to the squad?"></textarea><span class="field-help">Maximum 450 characters.</span></div>
+<div class="form-field full"><label for="availability">When do you usually play?</label><select id="availability" name="Typical availability"><option value="">Choose an option</option><option>Mostly weekdays</option><option>Mostly weekends</option><option>A mix of weekdays and weekends</option><option>My schedule varies</option></select></div>
+<div class="form-field full"><label class="form-checkbox"><input type="checkbox" name="Privacy confirmation" value="Confirmed" required><span>I confirm that my application only contains my Roblox username and game-related information. I have not included my real name, email address, phone number, school, home address, password, or other private details.</span></label></div>
 <!-- Formspree honeypot anti-spam field. Keep it empty. -->
 <div class="form-field hidden-field" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
 </div>
-<div class="form-actions"><button class="button button-primary" type="submit" data-fs-submit-btn>SUBMIT APPLICATION →</button><a class="button button-secondary" href="/squad/">VIEW THE SQUAD</a></div>
-<p class="form-status" id="application-status" role="status" aria-live="polite">Application delivery is connected. Complete the form below to apply.</p>
-<p class="form-status" id="application-error" data-fs-error role="alert" aria-live="assertive" hidden></p>
+<div class="form-actions"><button class="button button-primary" type="submit">SUBMIT APPLICATION →</button><a class="button button-secondary" href="/squad/">VIEW THE SQUAD</a></div>
+<p class="form-status" id="application-status" role="status">This form submits directly to Formspree. After submission, follow the confirmation page shown by Formspree.</p>
 </form>
 <aside class="panel form-aside">
 <div class="eyebrow"><span class="eyebrow-line"></span> HOW IT WORKS</div><h2>YOUR SHOT AT THE SQUAD.</h2><div class="requirements-block"><div class="requirements-title">PLAYER REQUIREMENTS</div><ul class="requirements-list">
