@@ -70,19 +70,37 @@
     board.className = "live-score-board";
     const home = document.createElement("div");
     home.className = "live-score-team";
-    const usaCrest = document.createElement("img");
-    usaCrest.src = "/assets/crest.png";
-    usaCrest.alt = "USA";
-    home.append(usaCrest, text("strong", match.homeName || "USA"));
+    const homeName = match.homeName || "USA";
+    if (String(homeName).toLowerCase() === "usa" || String(homeName).toLowerCase() === "united states") {
+      const usaCrest = document.createElement("img");
+      usaCrest.src = "/assets/crest.png";
+      usaCrest.alt = "USA";
+      home.append(usaCrest);
+    } else {
+      const homeMark = document.createElement("div");
+      homeMark.className = "live-opponent-mark";
+      homeMark.textContent = String(homeName).slice(0, 3).toUpperCase();
+      home.append(homeMark);
+    }
+    home.append(text("strong", homeName));
     const score = document.createElement("div");
     score.className = "live-score-numbers";
     score.append(text("strong", match.homeScore), text("span", ":"), text("strong", match.awayScore));
     const away = document.createElement("div");
     away.className = "live-score-team";
-    const opponent = document.createElement("div");
-    opponent.className = "live-opponent-mark";
-    opponent.textContent = String(match.awayName || "OPP").slice(0, 3).toUpperCase();
-    away.append(opponent, text("strong", match.awayName || "Opponent"));
+    const awayName = match.awayName || "Opponent";
+    if (String(awayName).toLowerCase() === "usa" || String(awayName).toLowerCase() === "united states") {
+      const usaCrest = document.createElement("img");
+      usaCrest.src = "/assets/crest.png";
+      usaCrest.alt = "USA";
+      away.append(usaCrest);
+    } else {
+      const awayMark = document.createElement("div");
+      awayMark.className = "live-opponent-mark";
+      awayMark.textContent = String(awayName).slice(0, 3).toUpperCase();
+      away.append(awayMark);
+    }
+    away.append(text("strong", awayName));
     board.append(home, score, away);
     scoreboard.append(meta, board);
 
@@ -308,7 +326,7 @@
     }
     if (title) title.textContent = announcement.opponent ? "USA vs " + announcement.opponent : "USA MATCHDAY LINEUP";
     if (meta) meta.textContent = [announcement.competition, formatDate(announcement.date), announcement.kickoff, announcement.venue].filter(Boolean).join(" · ");
-    if (status) status.textContent = statusLabel("scheduled") + (announcement.formation ? " · " + announcement.formation : "");
+    if (status) status.textContent = statusLabel(announcement.status || "announced") + (announcement.formation ? " · " + announcement.formation : "");
     const addPlayer = (target, player, substitute) => {
       const card = document.createElement("article");
       card.className = "matchday-player-card";
