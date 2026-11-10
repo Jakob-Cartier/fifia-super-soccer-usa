@@ -2,9 +2,8 @@
   const form = document.querySelector("#team-application-form");
   if (!form) return;
 
-  // Paste the Formspree form ID here after a trusted adult/team moderator
-  // creates the form and sets the private Target Email in the Formspree dashboard.
-  // Only the public form ID belongs in this file. Never put the inbox address here.
+  // Public Formspree form ID. The receiving inbox is configured privately
+  // in the Formspree dashboard and must never be placed in this public file.
   const FORMSPREE_FORM_ID = "xjywbypd";
 
   const submitButton = form.querySelector('button[type="submit"]');
