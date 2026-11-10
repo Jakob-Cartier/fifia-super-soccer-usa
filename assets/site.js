@@ -1,6 +1,23 @@
 (() => {
   const body = document.body;
   const themePicker = document.querySelector("#theme-picker");
+
+  // Site-wide player recruitment banner.
+  const announcementBar = document.querySelector(".announcement-bar");
+  if (announcementBar && !document.querySelector(".top-recruitment-banner")) {
+    const banner = document.createElement("div");
+    banner.className = "top-recruitment-banner";
+    const label = document.createElement("span");
+    label.className = "top-recruitment-label";
+    label.textContent = "PLAYER RECRUITMENT OPEN";
+    const message = document.createElement("strong");
+    message.textContent = "WE'RE LOOKING FOR NEW PLAYERS";
+    const link = document.createElement("a");
+    link.href = "/apply/";
+    link.textContent = "CLICK HERE TO APPLY →";
+    banner.append(label, message, link);
+    announcementBar.insertAdjacentElement("afterend", banner);
+  }
   const themeKey = "usa-national-team-theme";
   const allowedThemes = ["winter-midnight", "frost-white", "aurora-ice", "usa-classic"];
 
@@ -65,6 +82,7 @@
   if (copyButton) copyButton.addEventListener("click", async () => {
     const roster = [
       "USA NATIONAL TEAM — ROBLOX FIFA SUPER SOCCER",
+      "Mark — Senior Goalkeeper — Number TBD",
       "Kayden — CM — Central Midfielder — #5",
       "Brycen — RW — Captain — #10",
       "Tessa — LW — Forward — #9",
