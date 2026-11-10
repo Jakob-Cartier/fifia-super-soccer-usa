@@ -99,7 +99,7 @@
       "Brycen — RW — Captain — #10",
       "Tessa — LW — Forward — #9",
       "Ruffles — RW — Attacking Substitute — #6"
-    ].join("\\n");
+    ].join("\n");
     try {
       await navigator.clipboard.writeText(roster);
       notify("Roster copied.");
