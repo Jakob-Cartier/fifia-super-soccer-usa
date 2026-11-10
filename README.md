@@ -14,28 +14,26 @@ A responsive, multi-page website for the custom USA National Team in Roblox FIFA
 
 Each section is a folder with its own index.html, so page URLs do not end in .html.
 
-## Team branding
-
-The site logo and favicon use assets/crest.png.
-
-## Player headshots and roster
-
-Current photos are in assets/players/: kayden.png, brycen.png, tessa.png, and ruffles.png.
+## Team roster
 
 | Player | Position | Role | Number | Team duty |
 |---|---|---|---:|---|
 | Kayden | CM | Central Midfielder | 5 | Starter |
 | Brycen | RW | Forward | 10 | Captain |
 | Tessa | LW | Forward | 9 | Starter |
-| Ruffles | RW | Attacking substitute | 6 | Substitute |
+| Ruffles | RW | Right-wing attacking substitute | 6 | Substitute |
 
 Player descriptions are position-based and do not claim unconfirmed statistics or achievements.
 
-## Application form email delivery
+## Player application form
 
-The application form is on /apply/. It only requests a Roblox username and game-related details; it does not request a real name, personal email, phone number, age, school, or address.
+The application form is on /apply/. It collects a Roblox username and game-related details only. It does not ask for a real name, personal email address, phone number, age, school, or home address.
 
-Email delivery uses FormSubmit. Before enabling submissions, set APPLICATION_INBOX in assets/apply.js to a shared, moderator-managed team inbox. The inbox owner must complete FormSubmit's first-use email confirmation. The recipient address is placed in the public website code when using the direct email endpoint, so use a shared team inbox rather than a personal address. Keep the application inbox moderated.
+Email delivery uses Formspree. A trusted adult or designated team moderator should create and supervise the Formspree project, then set the team's chosen shared inbox as the private Target Email in the Formspree dashboard. Do not put the receiving email address in this public repository.
+
+After the form is created, copy its Form ID from the Formspree dashboard and place it in the FORMSPREE_FORM_ID setting in assets/apply.js. The public Form ID is used by the website; the receiving email remains in the Formspree dashboard. The form remains disabled while the Form ID is blank.
+
+Formspree's official setup guide: https://help.formspree.io/articles/building-your-form/building-an-html-form
 
 ## Website themes
 
