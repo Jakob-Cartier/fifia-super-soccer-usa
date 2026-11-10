@@ -68,17 +68,19 @@ The player card gallery and squad depth chart use the current roster information
 
 ## Match Center and competition tools
 
-The Live Match Center, standings, match reports, tournament bracket, and matchday team sheet share the data in `assets/match-data.js`. This is a static GitHub Pages data feed: updates become visible after staff edit and commit the file, GitHub Pages deploys the change, and visitors refresh the page. The site does not provide a secure browser-based staff editor or push-based live scoring.
+The Live Match Center, standings, match reports, tournament bracket, and matchday team sheet share the data in `assets/match-data.js`. This is a static GitHub Pages data feed: staff edit and commit the file, GitHub Pages deploys the change, and visitors use **Refresh Feed** or reload the page to see it. The site does not provide a secure browser-based staff editor or push-based live scoring.
 
-- `liveMatch`: current scoreboard, status, clock, venue, and match events. Set it to `null` when no match is live.
-- `fixtures`: confirmed upcoming matches with date, time, competition, opponent, and venue.
-- `results`: final verified scores. Each result can include a `reportId` linking to a report.
-- `standings`: competition name, updated date, and team rows with played, won, drawn, lost, goalsFor, and goalsAgainst. The table calculates goal difference and points (3 for a win, 1 for a draw).
-- `reports`: completed-match recaps with date, opponent, score, headline, summary, Player of the Match, and key moments.
-- `tournament`: optional competition name, group tables, and knockout rounds with confirmed fixtures and scores.
-- `matchday`: optional confirmed matchday announcement containing the opponent, date, kickoff, venue, formation, starters, substitutes, and note.
+- `liveMatch`: current scoreboard. Use `null` when no match is live. For a live game, set `status`, `date`, `competition`, `homeName`, `awayName`, `homeScore`, `awayScore`, and optional `clock`, `venue`, `note`, and `events`. Event types include `goal`, `own-goal`, `yellow-card`, `red-card`, `substitution`, `penalty`, and `note`. Status values: `live`, `halftime`, `fulltime`, or `scheduled`.
+- `fixtures`: an array of confirmed upcoming matches: `id`, `date` (YYYY-MM-DD), `time`, `competition`, `opponent`, `venue`, and `status`.
+- `results`: an array of final verified scores: `id`, `date`, `competition`, `opponent`, `usaScore`, `opponentScore`, and optional `reportId`.
+- `standings`: `competition`, `updated`, and `teams`. Each team has `team`, `played`, `won`, `drawn`, `lost`, `goalsFor`, and `goalsAgainst`. The table sorts by points, then goal difference, then goals scored; points are calculated as 3 for a win and 1 for a draw.
+- `reports`: completed-match recaps with `id`, `date`, `competition`, `opponent`, `usaScore`, `opponentScore`, `headline`, `summary`, optional `playerOfMatch`, and `keyMoments`.
+- `tournament`: optional `name`, `season`, `status`, `groups` (each with `name` and `teams`), and `rounds` (each with `name` and `matches` including home/away teams, scores, status, winner, and date).
+- `matchday`: optional confirmed announcement with `status`, `opponent`, `competition`, `date`, `kickoff`, `venue`, `formation`, `starters`, `substitutes`, and `note`. Only add it after a specific matchday team sheet is approved.
 
-Leave unknown sections as `null` or empty arrays. Do not create fictional match scores, tournament teams, standings, match events, or lineup announcements. The matchday page includes a print team-sheet action.
+Leave unknown sections as `null` or empty arrays. Do not create fictional match scores, tournament teams, standings, match events, reports, or lineup announcements. The matchday page includes a printable team-sheet button.
+
+**Publishing process:** Edit `assets/match-data.js`, commit the changes to `main`, then increase the `?v=` number for `assets/match-data.js` in `matches/index.html`, `standings/index.html`, `reports/index.html`, `tournaments/index.html`, and `matchday/index.html`. This cache-bust makes visitors load the new feed after GitHub Pages deploys.
 
 ## Website themes
 
