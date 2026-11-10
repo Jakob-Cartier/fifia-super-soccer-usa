@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07172d">
+<meta name="description" content="View upcoming USA National Team practices, matches, and Roblox FIFA Super Soccer events.">
+<title>Team Calendar | USA National Team</title>
+<link rel="icon" href="/assets/crest.png" type="image/png">
+<link rel="stylesheet" href="/assets/site.css?v=6">
+<script src="/assets/site.js?v=5" defer></script>
+<script src="/assets/chat-widget.js?v=3" defer></script>
+<script src="/assets/events.js?v=1" defer></script>
+<script src="/assets/calendar.js?v=1" defer></script>
+</head>
+<body data-theme="winter-midnight">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="announcement-bar"><span class="announcement-dot" aria-hidden="true"></span><span>ROBLOX FIFA SUPER SOCCER</span><span class="announcement-divider" aria-hidden="true"></span><span class="announcement-muted">THE USA SQUAD</span></div>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="/" aria-label="USA National Team home"><img src="/assets/crest.png" alt="" class="brand-crest"><span class="brand-copy"><strong>UNITED STATES</strong><small>NATIONAL TEAM · ROBLOX</small></span></a>
+<button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button>
+<nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
+<a href="/squad/">The Squad</a><a href="/lineup/">Lineup</a><a href="/matches/">Match Center</a><a href="/about/">About</a><a href="/apply/" class="nav-apply">Apply to join</a><a href="/support/">Support</a>
+<label class="theme-control"><span>THEME</span><select id="theme-picker" aria-label="Choose website theme"><option value="winter-midnight">Winter Midnight</option><option value="frost-white">Frost White</option><option value="aurora-ice">Aurora Ice</option><option value="usa-classic">USA Classic</option></select></label>
+</nav>
+</div></header>
+<main id="main">
+<section class="page-hero"><div class="page-width"><div class="eyebrow"><span class="eyebrow-line"></span> FIXTURES · PRACTICES · TEAM ACTIVITIES</div><h1>TEAM <span>CALENDAR.</span></h1><p>Keep up with confirmed USA squad matches, practices, tryouts, and other Roblox team events.</p><div class="breadcrumb">HOME / TEAM CALENDAR</div></div></section>
+<section class="content-section page-width">
+<p class="calendar-intro">Choose a date to see its events. Use the arrows to move between months or select Today to return to the current date. The calendar will fill in as the team publishes confirmed events.</p>
+<div class="calendar-layout">
+<section class="panel calendar-panel" aria-label="Monthly team calendar">
+<div class="calendar-toolbar">
+<button class="calendar-nav" id="calendar-prev" type="button" aria-label="Previous month">←</button>
+<h2 id="calendar-month-label" aria-live="polite">Month Year</h2>
+<button class="calendar-nav" id="calendar-next" type="button" aria-label="Next month">→</button>
+<button class="calendar-today" id="calendar-today" type="button">TODAY</button>
+</div>
+<div class="calendar-weekdays" aria-hidden="true">
+<span class="calendar-weekday">Sun</span><span class="calendar-weekday">Mon</span><span class="calendar-weekday">Tue</span><span class="calendar-weekday">Wed</span><span class="calendar-weekday">Thu</span><span class="calendar-weekday">Fri</span><span class="calendar-weekday">Sat</span>
+</div>
+<div class="calendar-grid" id="calendar-grid" role="group" aria-label="Calendar dates"></div>
+<div class="calendar-legend"><span><i></i> Confirmed event</span><span>Dates are shown in your local calendar view.</span></div>
+</section>
+<aside class="panel calendar-sidebar">
+<div class="eyebrow"><span class="eyebrow-line"></span> YOUR SELECTION</div>
+<h2 id="selected-date-label">Selected day</h2>
+<div class="calendar-event-list" id="selected-day-events" aria-live="polite"><div class="calendar-empty">Loading calendar events…</div></div>
+<div class="calendar-divider"></div>
+<div class="eyebrow"><span class="eyebrow-line"></span> COMING UP</div>
+<h2>Upcoming events</h2>
+<div class="calendar-event-list" id="upcoming-events"><div class="calendar-empty">Loading upcoming events…</div></div>
+</aside>
+</div>
+<div class="panel calendar-publishing-note">
+<strong>How events are added</strong>
+<p>Confirmed events are maintained in <code>assets/events.js</code>. Team staff can add a match, practice, tryout, or announcement there, and it will appear in the correct calendar date and upcoming-events list automatically.</p>
+<a class="feature-link" href="/matches/">VISIT MATCH CENTER →</a>
+</div>
+</section>
+</main>
+<footer class="site-footer"><div class="page-width footer-main">
+<a class="brand" href="/"><img src="/assets/crest.png" alt="" class="brand-crest"><span class="brand-copy"><strong>UNITED STATES</strong><small>NATIONAL TEAM · ROBLOX</small></span></a>
+<p class="footer-motto">ONE TEAM. ONE NATION.</p><a class="feature-link" href="/support/">SUPPORT THE TEAM →</a>
+</div><div class="page-width footer-bottom"><span>© <span data-current-year>2026</span> USA NATIONAL TEAM · FAN-MADE ROBLOX TEAM WEBSITE</span><span class="disclaimer">Not affiliated with Roblox, EA SPORTS, FIFA, or U.S. Soccer.</span></div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body></html>
