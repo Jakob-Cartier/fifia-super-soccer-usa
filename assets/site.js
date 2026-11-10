@@ -37,6 +37,18 @@
 
   const menuButton = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".primary-nav");
+  if (nav) {
+    const matchLink = nav.querySelector('a[href="/matches/"]');
+    if (matchLink && !nav.querySelector('a[href="/calendar/"]')) {
+      const calendarLink = document.createElement("a");
+      calendarLink.href = "/calendar/";
+      calendarLink.textContent = "Calendar";
+      if (window.location.pathname.startsWith("/calendar")) {
+        calendarLink.setAttribute("aria-current", "page");
+      }
+      matchLink.insertAdjacentElement("afterend", calendarLink);
+    }
+  }
   if (menuButton && nav) {
     menuButton.addEventListener("click", () => {
       const open = menuButton.getAttribute("aria-expanded") === "true";
