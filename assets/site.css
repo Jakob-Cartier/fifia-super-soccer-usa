@@ -299,3 +299,5 @@ select:focus-visible {
   .form-aside { padding:19px; }
   .nav-apply { padding:13px 6px!important; justify-content:flex-start; background:transparent; color:var(--accent)!important; border-bottom:1px solid var(--line); }
 }
+
+.hidden-field { display:none!important; }
