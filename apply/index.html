@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="/assets/site.css?v=4">
 <script src="/assets/site.js?v=3" defer></script>
 <script src="/assets/chat-widget.js?v=3" defer></script>
+<script>window.formspree=window.formspree||function(){(window.formspree.q=window.formspree.q||[]).push(arguments);};</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 <script src="/assets/apply.js?v=2" defer></script>
 </head>
 <body data-theme="winter-midnight">
@@ -27,8 +29,6 @@
 <div class="application-layout">
 <form class="panel application-form" id="team-application-form" method="POST">
 <input type="hidden" name="_subject" value="New USA National Team application">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_next" value="https://fifasupersoccer-usnational.futbol/apply/thanks/">
 <div class="form-grid">
 <div class="form-field full"><div class="eyebrow"><span class="eyebrow-line"></span> PLAYER DETAILS</div></div>
 <div class="form-field full"><label for="roblox-username">Roblox username *</label><input id="roblox-username" name="Roblox username" type="text" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]{3,20}" autocomplete="off" placeholder="Your Roblox username"><span class="field-help">Enter your Roblox username, not your password or verification code.</span></div>
@@ -41,8 +41,9 @@
 <!-- Honeypot anti-spam field used by FormSubmit. Keep it empty. -->
 <div class="form-field hidden-field" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
 </div>
-<div class="form-actions"><button class="button button-primary" type="submit" disabled>SUBMIT APPLICATION →</button><a class="button button-secondary" href="/squad/">VIEW THE SQUAD</a></div>
+<div class="form-actions"><button class="button button-primary" type="submit" data-fs-submit-btn disabled>SUBMIT APPLICATION →</button><a class="button button-secondary" href="/squad/">VIEW THE SQUAD</a></div>
 <p class="form-status" id="application-status" role="status" aria-live="polite">The form is ready, but application delivery is not connected yet.</p>
+<p class="form-status" id="application-error" data-fs-error role="alert" aria-live="assertive" hidden></p>
 </form>
 <aside class="panel form-aside">
 <div class="eyebrow"><span class="eyebrow-line"></span> HOW IT WORKS</div><h2>YOUR SHOT AT THE SQUAD.</h2><div class="application-steps">
