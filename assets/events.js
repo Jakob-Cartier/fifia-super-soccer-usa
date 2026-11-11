@@ -13,6 +13,13 @@
  *   location: "Roblox FIFA Super Soccer"
  * }
  *
- * Keep this array empty until an event has actually been confirmed.
+ * Keep this array updated with confirmed team events.
  */
-window.USA_TEAM_EVENTS = [];
+window.USA_TEAM_EVENTS = [
+  {
+    id: "team-practice-2026-11-13",
+    date: "2026-11-13",
+    title: "Team Practice",
+    type: "Practice"
+  }
+];
