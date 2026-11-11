@@ -28,13 +28,13 @@ Each section is a folder with its own index.html, so page URLs do not end in .ht
 
 | Player | Position | Role | Number | Team duty |
 |---|---|---|---:|---|
-| Mark | GK | Senior Goalkeeper | TBD | Starter |
+| Mark | GK | Senior Goalkeeper | 1 | Starter |
 | Kayden | CM | Central Midfielder | 5 | Starter |
 | Brycen | RW | Forward | 10 | Captain |
 | Tessa | LW | Forward | 9 | Starter |
 | Ruffles | RW | Right-wing attacking substitute | 6 | Substitute |
 
-Mark is listed as the senior goalkeeper. His squad number has not yet been assigned. Player portraits are stored in `assets/players/` as lowercase PNG files. Mark's portrait is `mark.png`. Player descriptions are position-based and do not claim unconfirmed statistics or achievements.
+Mark is listed as the senior goalkeeper wearing squad number 1. Player portraits are stored in `assets/players/` as lowercase PNG files. Mark's portrait is `mark.png`. Player descriptions are position-based and do not claim unconfirmed statistics or achievements.
 
 ## Player application form
 
