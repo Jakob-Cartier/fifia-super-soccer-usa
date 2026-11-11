@@ -11,7 +11,7 @@ window.USA_TEAM_RECORDS = {
   seasonLabel: "Team records",
   matchesRecorded: 0,
   stats: [
-    { id: "mark", name: "Mark", position: "Senior Goalkeeper", number: "TBD", appearances: null, goals: null, assists: null, saves: null, cleanSheets: null, rating: null },
+    { id: "mark", name: "Mark", position: "Senior Goalkeeper", number: "1", appearances: null, goals: null, assists: null, saves: null, cleanSheets: null, rating: null },
     { id: "kayden", name: "Kayden", position: "Central Midfielder", number: "5", appearances: null, goals: null, assists: null, saves: null, cleanSheets: null, rating: null },
     { id: "brycen", name: "Brycen", position: "Right Wing · Captain", number: "10", appearances: null, goals: null, assists: null, saves: null, cleanSheets: null, rating: null },
     { id: "tessa", name: "Tessa", position: "Left Wing", number: "9", appearances: null, goals: null, assists: null, saves: null, cleanSheets: null, rating: null },
