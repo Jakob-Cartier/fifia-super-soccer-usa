@@ -141,7 +141,7 @@
   if (copyButton) copyButton.addEventListener("click", async () => {
     const roster = [
       "USA NATIONAL TEAM — ROBLOX FIFA SUPER SOCCER",
-      "Mark — Senior Goalkeeper — Number TBD",
+      "Mark — Senior Goalkeeper — #1",
       "Kayden — CM — Central Midfielder — #5",
       "Brycen — RW — Captain — #10",
       "Tessa — LW — Forward — #9",
