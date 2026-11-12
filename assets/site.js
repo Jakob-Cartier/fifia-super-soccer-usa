@@ -41,6 +41,21 @@
         <div class="preview-lock-note">PREVIEW WINDOW · LIMITED REVEAL</div>
       </div>`;
     document.body.append(gate);
+    // Lock every underlying page section until the scheduled full release.
+    const lockedNodes = Array.from(document.body.children)
+      .filter((node) => node !== gate)
+      .map((node) => ({
+        node,
+        wasInert: node.inert,
+        hadAriaHidden: node.hasAttribute("aria-hidden"),
+        ariaHidden: node.getAttribute("aria-hidden")
+      }));
+    lockedNodes.forEach(({ node }) => {
+      node.inert = true;
+      node.setAttribute("aria-hidden", "true");
+    });
+    gate.tabIndex = -1;
+    gate.focus({ preventScroll: true });
     document.documentElement.classList.add("launch-locked");
     body.classList.add("launch-locked");
 
@@ -61,6 +76,11 @@
         gate.classList.add("launch-gate-exit");
         document.documentElement.classList.remove("launch-locked");
         body.classList.remove("launch-locked");
+        lockedNodes.forEach(({ node, wasInert, hadAriaHidden, ariaHidden }) => {
+          node.inert = wasInert;
+          if (hadAriaHidden) node.setAttribute("aria-hidden", ariaHidden);
+          else node.removeAttribute("aria-hidden");
+        });
         window.setTimeout(() => gate.remove(), 850);
         window.clearInterval(timer);
         return;
