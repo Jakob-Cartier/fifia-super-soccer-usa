@@ -1,11 +1,7 @@
 (() => {
   const body = document.body;
 
-  // Scheduled three-stage launch gate. Times are fixed to Eastern Time in November 2026.
-  const launchStart = Date.parse("2026-11-12T03:30:00Z"); // Nov 11, 10:30 PM EST
-  const previewEnd = Date.parse("2026-11-12T03:40:00Z"); // Nov 11, 10:40 PM EST
-  const fullRelease = Date.parse("2026-11-12T20:45:00Z"); // Nov 12, 3:45 PM EST
-
+  // Scheduled launch gate is configured inside installLaunchGate below (Eastern Time).
   function installLaunchGate() {
     if (document.querySelector(".launch-gate")) return;
 
@@ -289,7 +285,8 @@
         ["/standings/", "League Standings"],
         ["/reports/", "Match Reports"],
         ["/tournaments/", "Tournament Bracket"],
-        ["/matchday/", "Matchday Lineup"]
+        ["/matchday/", "Matchday Lineup"],
+        ["/staff/", "Staff Workspace"]
       ];
       hubLinks.forEach(([href, label]) => {
         const link = document.createElement("a");
