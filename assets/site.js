@@ -207,7 +207,7 @@
         progress.style.setProperty("--progress", Math.max(0, Math.min(100, (now / launchStart) * 100)) + "%");
       } else {
         heading.innerHTML = "THE FULL<br><em>REVEAL AWAITS.</em>";
-        message.textContent = "The sneak peek has closed. The complete website opens tomorrow.";
+        message.textContent = "The sneak peek has closed. The complete website opens November 12 at 6:00 PM EST.";
         label.textContent = "FULL WEBSITE RELEASE IN";
         countdown.setAttribute("aria-label", "Countdown to full website release");
         updateCountdown(fullRelease - now);
