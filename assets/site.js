@@ -1,5 +1,116 @@
 (() => {
   const body = document.body;
+
+  // Scheduled three-stage launch gate. Times are fixed to Eastern Time in November 2026.
+  const launchStart = Date.parse("2026-11-12T03:30:00Z"); // Nov 11, 10:30 PM EST
+  const previewEnd = Date.parse("2026-11-12T03:40:00Z"); // Nov 11, 10:40 PM EST
+  const fullRelease = Date.parse("2026-11-12T20:45:00Z"); // Nov 12, 3:45 PM EST
+
+  function installLaunchGate() {
+    if (document.querySelector(".launch-gate")) return;
+    const gate = document.createElement("section");
+    gate.className = "launch-gate";
+    gate.setAttribute("role", "dialog");
+    gate.setAttribute("aria-modal", "true");
+    gate.setAttribute("aria-label", "Website launch countdown");
+    gate.innerHTML = `
+      <div class="launch-stars" aria-hidden="true"></div>
+      <div class="launch-gate-inner">
+        <div class="launch-mark"><img src="/assets/crest.png" alt="USA National Team crest"></div>
+        <div class="launch-kicker"><span class="launch-live-dot"></span> USA NATIONAL TEAM · WEBSITE UPDATE</div>
+        <h1 class="launch-title">A NEW ERA<br><em>IS COMING.</em></h1>
+        <p class="launch-message">The next chapter of the USA National Team is almost ready.</p>
+        <div class="launch-count-label">OFFICIAL REVEAL IN</div>
+        <div class="launch-countdown" aria-live="off">
+          <div><b data-count-days>00</b><span>DAYS</span></div>
+          <div><b data-count-hours>00</b><span>HOURS</span></div>
+          <div><b data-count-minutes>00</b><span>MINUTES</span></div>
+          <div><b data-count-seconds>00</b><span>SECONDS</span></div>
+        </div>
+        <div class="launch-progress"><span></span></div>
+        <div class="launch-foot"><span>ONE TEAM. ONE NATION.</span><span>EST. FOR THE GAME</span></div>
+      </div>
+      <div class="launch-preview" hidden>
+        <div class="preview-orbit preview-orbit-a"></div><div class="preview-orbit preview-orbit-b"></div>
+        <div class="preview-scan"></div>
+        <div class="preview-crest"><img src="/assets/crest.png" alt="USA crest"></div>
+        <div class="preview-kicker">THE FUTURE OF THE SQUAD</div>
+        <h2>THE WAIT<br><em>IS ALMOST OVER.</em></h2>
+        <p>A first look at what's next.</p>
+        <div class="preview-build"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="preview-lock-note">PREVIEW WINDOW · LIMITED REVEAL</div>
+      </div>`;
+    document.body.append(gate);
+    document.documentElement.classList.add("launch-locked");
+    body.classList.add("launch-locked");
+
+    const countdown = gate.querySelector(".launch-countdown");
+    const preview = gate.querySelector(".launch-preview");
+    const heading = gate.querySelector(".launch-title");
+    const message = gate.querySelector(".launch-message");
+    const label = gate.querySelector(".launch-count-label");
+    const foot = gate.querySelector(".launch-foot");
+    const progress = gate.querySelector(".launch-progress");
+    let released = false;
+
+    const pad = (n) => String(n).padStart(2, "0");
+    function tick() {
+      const now = Date.now();
+      if (now >= fullRelease) {
+        released = true;
+        gate.classList.add("launch-gate-exit");
+        document.documentElement.classList.remove("launch-locked");
+        body.classList.remove("launch-locked");
+        window.setTimeout(() => gate.remove(), 850);
+        window.clearInterval(timer);
+        return;
+      }
+      if (now >= launchStart && now < previewEnd) {
+        gate.classList.add("is-preview");
+        countdown.hidden = true;
+        label.hidden = true;
+        progress.hidden = true;
+        heading.hidden = true;
+        message.hidden = true;
+        foot.hidden = true;
+        preview.hidden = false;
+        return;
+      }
+      gate.classList.remove("is-preview");
+      preview.hidden = true;
+      countdown.hidden = false;
+      label.hidden = false;
+      progress.hidden = false;
+      heading.hidden = false;
+      message.hidden = false;
+      foot.hidden = false;
+      if (now < launchStart) {
+        heading.innerHTML = "A NEW ERA<br><em>IS COMING.</em>";
+        message.textContent = "The next chapter of the USA National Team is almost ready.";
+        label.textContent = "FIRST REVEAL IN";
+        countdown.setAttribute("aria-label", "Countdown to first reveal");
+        updateCountdown(launchStart - now);
+        progress.style.setProperty("--progress", String(Math.max(0, Math.min(100, (now / launchStart) * 100)) ) + "%");
+      } else {
+        heading.innerHTML = "THE FULL<br><em>REVEAL AWAITS.</em>";
+        message.textContent = "The preview has closed. The complete team website opens tomorrow.";
+        label.textContent = "FULL WEBSITE RELEASE IN";
+        countdown.setAttribute("aria-label", "Countdown to full website release");
+        updateCountdown(fullRelease - now);
+        progress.style.setProperty("--progress", String(Math.max(0, Math.min(100, ((now - previewEnd) / (fullRelease - previewEnd)) * 100))) + "%");
+      }
+    }
+    function updateCountdown(ms) {
+      const seconds = Math.max(0, Math.floor(ms / 1000));
+      gate.querySelector("[data-count-days]").textContent = pad(Math.floor(seconds / 86400));
+      gate.querySelector("[data-count-hours]").textContent = pad(Math.floor((seconds % 86400) / 3600));
+      gate.querySelector("[data-count-minutes]").textContent = pad(Math.floor((seconds % 3600) / 60));
+      gate.querySelector("[data-count-seconds]").textContent = pad(seconds % 60);
+    }
+    const timer = window.setInterval(tick, 250);
+    tick();
+  }
+  installLaunchGate();
   const themePicker = document.querySelector("#theme-picker");
 
   // Site-wide player recruitment banner.
