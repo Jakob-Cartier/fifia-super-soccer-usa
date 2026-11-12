@@ -1574,3 +1574,6 @@ body[data-theme] .announcement-bar{background:#d93c37!important;color:#fff!impor
 body[data-theme] .primary-nav{color:#c2cad5!important}
 body[data-theme] .brand-copy strong{color:#fff!important}
 body[data-theme] .brand-copy small{color:#aeb9c8!important}
+
+/* The Fieldhouse redesign is the single site-wide visual system; hide the retired legacy theme picker. */
+body[data-theme] .theme-control{display:none!important}
