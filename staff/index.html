@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101c2d">
+<meta name="description" content="USA National Team staff workspace for managing calendar events, player records, awards, fixtures and match data.">
+<title>Staff Workspace | USA National Team</title>
+<link rel="icon" href="/assets/crest.png" type="image/png">
+<link rel="stylesheet" href="/assets/site.css?v=16">
+<script src="/assets/site.js?v=16" defer></script>
+<script src="/assets/events.js?v=1" defer></script>
+<script src="/assets/records.js?v=1" defer></script>
+<script src="/assets/match-data.js?v=1" defer></script>
+<script src="/assets/staff.js?v=1" defer></script>
+</head>
+<body data-theme="winter-midnight">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="announcement-bar"><span class="announcement-dot" aria-hidden="true"></span><span>USA NATIONAL TEAM</span><span class="announcement-divider" aria-hidden="true"></span><span class="announcement-muted">STAFF OPERATIONS</span></div>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="/" aria-label="USA National Team home"><img src="/assets/crest.png" alt="" class="brand-crest"><span class="brand-copy"><strong>UNITED STATES</strong><small>NATIONAL TEAM · ROBLOX</small></span></a>
+<button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button>
+<nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
+<a href="/squad/">The Squad</a><a href="/lineup/">Lineup</a><a href="/matches/">Match Center</a><a href="/calendar/">Calendar</a><a href="/about/">About</a><a href="/apply/" class="nav-apply">Apply to join</a>
+<label class="theme-control"><span>THEME</span><select id="theme-picker" aria-label="Choose website theme"><option value="winter-midnight">Fieldhouse</option><option value="frost-white">Frost White</option><option value="aurora-ice">Aurora Ice</option><option value="usa-classic">USA Classic</option></select></label>
+</nav></div></header>
+<main id="main" class="staff-main page-width">
+  <div class="staff-masthead">
+    <div>
+      <div class="staff-kicker"><span class="staff-live-dot"></span> OPERATIONS / CONTROL ROOM</div>
+      <h1>STAFF <em>WORKSPACE.</em></h1>
+      <p>Manage confirmed team events, player records, awards, fixtures and match data from one place.</p>
+    </div>
+    <div class="staff-status-card"><span class="staff-status-dot"></span><div><strong>LOCAL DRAFT MODE</strong><small>Changes saved in this browser</small></div></div>
+  </div>
+
+  <div class="staff-warning" role="note">
+    <strong>Publishing note</strong>
+    <span>This is a local editing workspace, not a secure sign-in or live website editor. Drafts stay in this browser. Export the updated files and commit them to the GitHub repository to publish changes for everyone. Do not enter passwords, personal information, or secrets here.</span>
+  </div>
+
+  <div class="staff-layout">
+    <aside class="staff-sidebar" aria-label="Staff workspace sections">
+      <div class="staff-sidebar-label">WORKSPACE</div>
+      <button type="button" class="staff-tab is-active" data-tab="overview"><span>◫</span> Overview</button>
+      <button type="button" class="staff-tab" data-tab="events"><span>▦</span> Team calendar</button>
+      <button type="button" class="staff-tab" data-tab="records"><span>◎</span> Player records</button>
+      <button type="button" class="staff-tab" data-tab="matches"><span>⚑</span> Match desk</button>
+      <button type="button" class="staff-tab" data-tab="publish"><span>↥</span> Publish center</button>
+      <div class="staff-sidebar-foot"><span>USA / STAFF TOOLS</span><small>FIELDHOUSE EDITION · 2026</small></div>
+    </aside>
+
+    <div class="staff-content">
+      <section class="staff-view is-active" data-view="overview">
+        <div class="staff-view-heading"><div><div class="staff-eyebrow">COMMAND OVERVIEW</div><h2>TEAM <em>AT A GLANCE.</em></h2></div><span class="staff-local-pill">● LOCAL DRAFT</span></div>
+        <div class="staff-metric-grid">
+          <article class="staff-metric"><span>UPCOMING / TOTAL EVENTS</span><strong id="metric-events">0</strong><small>Calendar records</small></article>
+          <article class="staff-metric"><span>PLAYER RECORDS</span><strong id="metric-players">0</strong><small>Statistics center</small></article>
+          <article class="staff-metric"><span>PLAYER AWARDS</span><strong id="metric-awards">0</strong><small>Confirmed honors</small></article>
+          <article class="staff-metric"><span>FIXTURES / RESULTS</span><strong id="metric-matches">0 / 0</strong><small>Match center</small></article>
+        </div>
+        <div class="staff-overview-grid">
+          <article class="staff-module-card"><div class="staff-module-index">01 / CALENDAR</div><h3>Plan the next team day.</h3><p>Add or remove confirmed practices, matches, tryouts and team events.</p><button class="staff-inline-action" data-open-tab="events" type="button">OPEN CALENDAR TOOLS ↗</button></article>
+          <article class="staff-module-card"><div class="staff-module-index">02 / PLAYER DATA</div><h3>Keep records accurate.</h3><p>Update verified player numbers and maintain the Player of the Match archive.</p><button class="staff-inline-action" data-open-tab="records" type="button">OPEN PLAYER RECORDS ↗</button></article>
+          <article class="staff-module-card"><div class="staff-module-index">03 / MATCH DESK</div><h3>Prepare matchday content.</h3><p>Manage confirmed fixtures, final scores and the wider match feed.</p><button class="staff-inline-action" data-open-tab="matches" type="button">OPEN MATCH DESK ↗</button></article>
+        </div>
+        <div class="staff-recent-panel"><div class="staff-panel-heading"><div><div class="staff-eyebrow">CURRENT CALENDAR</div><h3>UPCOMING EVENTS</h3></div><button class="staff-text-button" data-open-tab="events" type="button">MANAGE ↗</button></div><div id="overview-events" class="staff-compact-list"></div></div>
+      </section>
+
+      <section class="staff-view" data-view="events">
+        <div class="staff-view-heading"><div><div class="staff-eyebrow">SCHEDULING / TEAM ACTIVITIES</div><h2>TEAM <em>CALENDAR.</em></h2></div><span class="staff-local-pill">EVENT MANAGER</span></div>
+        <div class="staff-form-panel">
+          <div class="staff-panel-heading"><div><div class="staff-eyebrow">CREATE RECORD</div><h3>ADD A TEAM EVENT</h3></div><span class="staff-form-mark">+</span></div>
+          <form id="event-form" class="staff-form-grid">
+            <label class="staff-field staff-span-2"><span>EVENT TITLE *</span><input name="title" required maxlength="90" placeholder="Team Practice"></label>
+            <label class="staff-field"><span>DATE *</span><input name="date" type="date" required></label>
+            <label class="staff-field"><span>TIME</span><input name="time" maxlength="35" placeholder="7:00 PM EST"></label>
+            <label class="staff-field"><span>EVENT TYPE</span><select name="type"><option>Practice</option><option>Match</option><option>Tryout</option><option>Team Meeting</option><option>Tournament</option><option>Other</option></select></label>
+            <label class="staff-field"><span>LOCATION</span><input name="location" maxlength="100" placeholder="Roblox FIFA Super Soccer"></label>
+            <label class="staff-field staff-span-2"><span>DESCRIPTION</span><textarea name="description" rows="2" maxlength="240" placeholder="What should players know?"></textarea></label>
+            <label class="staff-field staff-span-2"><span>OPTIONAL HTTPS LINK</span><input name="url" type="url" placeholder="https://…"></label>
+            <div class="staff-form-actions staff-span-2"><button type="submit" class="staff-primary-button">ADD EVENT <span>＋</span></button><span class="staff-form-hint">Only publish dates and details confirmed by team staff.</span></div>
+          </form>
+        </div>
+        <div class="staff-list-panel"><div class="staff-panel-heading"><div><div class="staff-eyebrow">EVENT REGISTER</div><h3>ALL SCHEDULED EVENTS</h3></div><span id="events-total" class="staff-count-chip">0 EVENTS</span></div><div id="event-list" class="staff-record-list"></div></div>
+      </section>
+
+      <section class="staff-view" data-view="records">
+        <div class="staff-view-heading"><div><div class="staff-eyebrow">PLAYER PERFORMANCE / RECOGNITION</div><h2>PLAYER <em>RECORDS.</em></h2></div><span class="staff-local-pill">ROSTER DATA</span></div>
+        <div class="staff-form-panel">
+          <div class="staff-panel-heading"><div><div class="staff-eyebrow">STATISTICS CENTER</div><h3>ADD / EDIT PLAYER RECORD</h3></div><span class="staff-form-mark">◎</span></div>
+          <form id="player-form" class="staff-form-grid">
+            <input type="hidden" name="id">
+            <label class="staff-field"><span>PLAYER NAME *</span><input name="name" required maxlength="40" placeholder="Player name"></label>
+            <label class="staff-field"><span>POSITION</span><input name="position" maxlength="60" placeholder="Position"></label>
+            <label class="staff-field"><span>SQUAD NUMBER</span><input name="number" maxlength="3" placeholder="10"></label>
+            <label class="staff-field"><span>APPEARANCES</span><input name="appearances" type="number" min="0" step="1" placeholder="Leave blank if unknown"></label>
+            <label class="staff-field"><span>GOALS</span><input name="goals" type="number" min="0" step="1"></label>
+            <label class="staff-field"><span>ASSISTS</span><input name="assists" type="number" min="0" step="1"></label>
+            <label class="staff-field"><span>SAVES</span><input name="saves" type="number" min="0" step="1"></label>
+            <label class="staff-field"><span>CLEAN SHEETS</span><input name="cleanSheets" type="number" min="0" step="1"></label>
+            <label class="staff-field"><span>RATING</span><input name="rating" type="number" min="0" max="10" step=".1" placeholder="0–10"></label>
+            <div class="staff-form-actions staff-span-2"><button type="submit" class="staff-primary-button" id="player-submit">SAVE PLAYER RECORD <span>＋</span></button><button type="button" class="staff-secondary-button" id="player-cancel" hidden>CANCEL EDIT</button><span class="staff-form-hint">Blank statistics stay unknown and display as a dash.</span></div>
+          </form>
+        </div>
+        <div class="staff-list-panel"><div class="staff-panel-heading"><div><div class="staff-eyebrow">PLAYER REGISTER</div><h3>STATISTICS RECORDS</h3></div><span id="players-total" class="staff-count-chip">0 PLAYERS</span></div><div id="player-list" class="staff-record-list"></div></div>
+        <div class="staff-form-panel staff-spaced-panel">
+          <div class="staff-panel-heading"><div><div class="staff-eyebrow">TEAM RECOGNITION</div><h3>ADD PLAYER OF THE MATCH</h3></div><span class="staff-form-mark">★</span></div>
+          <form id="award-form" class="staff-form-grid">
+            <label class="staff-field"><span>WINNER *</span><input name="player" required maxlength="40" placeholder="Player name"></label>
+            <label class="staff-field"><span>POSITION</span><input name="position" maxlength="60" placeholder="Position"></label>
+            <label class="staff-field"><span>MATCH DATE *</span><input name="date" type="date" required></label>
+            <label class="staff-field"><span>OPPONENT</span><input name="opponent" maxlength="60" placeholder="Opponent"></label>
+            <label class="staff-field"><span>FINAL SCORE</span><input name="score" maxlength="20" placeholder="USA 2–1 Opponent"></label>
+            <label class="staff-field"><span>REASON</span><input name="reason" maxlength="180" placeholder="Verified match contribution"></label>
+            <div class="staff-form-actions staff-span-2"><button type="submit" class="staff-primary-button">ADD AWARD <span>＋</span></button></div>
+          </form>
+        </div>
+        <div class="staff-list-panel"><div class="staff-panel-heading"><div><div class="staff-eyebrow">HONORS ARCHIVE</div><h3>PLAYER OF THE MATCH</h3></div><span id="awards-total" class="staff-count-chip">0 AWARDS</span></div><div id="award-list" class="staff-record-list"></div></div>
+      </section>
+
+      <section class="staff-view" data-view="matches">
+        <div class="staff-view-heading"><div><div class="staff-eyebrow">FIXTURES / RESULTS / COMPETITIONS</div><h2>MATCH <em>DESK.</em></h2></div><span class="staff-local-pill">MATCH OPERATIONS</span></div>
+        <div class="staff-two-column">
+          <div class="staff-form-panel">
+            <div class="staff-panel-heading"><div><div class="staff-eyebrow">SCHEDULE A GAME</div><h3>ADD FIXTURE</h3></div><span class="staff-form-mark">＋</span></div>
+            <form id="fixture-form" class="staff-form-grid">
+              <label class="staff-field staff-span-2"><span>OPPONENT *</span><input name="opponent" required maxlength="70" placeholder="Opponent name"></label>
+              <label class="staff-field"><span>DATE *</span><input name="date" type="date" required></label>
+              <label class="staff-field"><span>KICKOFF</span><input name="time" maxlength="35" placeholder="7:00 PM EST"></label>
+              <label class="staff-field"><span>COMPETITION</span><input name="competition" maxlength="70" placeholder="Friendly"></label>
+              <label class="staff-field"><span>VENUE</span><input name="venue" maxlength="90" placeholder="Roblox FIFA Super Soccer"></label>
+              <label class="staff-field"><span>STATUS</span><select name="status"><option value="scheduled">Scheduled</option><option value="postponed">Postponed</option><option value="cancelled">Cancelled</option></select></label>
+              <div class="staff-form-actions staff-span-2"><button type="submit" class="staff-primary-button">ADD FIXTURE <span>＋</span></button></div>
+            </form>
+          </div>
+          <div class="staff-form-panel">
+            <div class="staff-panel-heading"><div><div class="staff-eyebrow">PUBLISH A FINAL SCORE</div><h3>ADD RESULT</h3></div><span class="staff-form-mark">✓</span></div>
+            <form id="result-form" class="staff-form-grid">
+              <label class="staff-field staff-span-2"><span>OPPONENT *</span><input name="opponent" required maxlength="70" placeholder="Opponent name"></label>
+              <label class="staff-field"><span>DATE *</span><input name="date" type="date" required></label>
+              <label class="staff-field"><span>COMPETITION</span><input name="competition" maxlength="70" placeholder="Competition"></label>
+              <label class="staff-field"><span>USA SCORE *</span><input name="usaScore" type="number" min="0" step="1" required></label>
+              <label class="staff-field"><span>OPPONENT SCORE *</span><input name="opponentScore" type="number" min="0" step="1" required></label>
+              <label class="staff-field staff-span-2"><span>REPORT ID (OPTIONAL)</span><input name="reportId" maxlength="80" placeholder="Links this result to a match report"></label>
+              <div class="staff-form-actions staff-span-2"><button type="submit" class="staff-primary-button">ADD RESULT <span>＋</span></button></div>
+            </form>
+          </div>
+        </div>
+        <div class="staff-list-panel"><div class="staff-panel-heading"><div><div class="staff-eyebrow">SCHEDULE REGISTER</div><h3>FIXTURES</h3></div><span id="fixtures-total" class="staff-count-chip">0 FIXTURES</span></div><div id="fixture-list" class="staff-record-list"></div></div>
+        <div class="staff-list-panel staff-spaced-panel"><div class="staff-panel-heading"><div><div class="staff-eyebrow">FINAL SCORE ARCHIVE</div><h3>RESULTS</h3></div><span id="results-total" class="staff-count-chip">0 RESULTS</span></div><div id="result-list" class="staff-record-list"></div></div>
+        <div class="staff-form-panel staff-spaced-panel">
+          <div class="staff-panel-heading"><div><div class="staff-eyebrow">ADVANCED MATCH CONTENT</div><h3>FULL MATCH DATA EDITOR</h3></div><span class="staff-form-mark">{ }</span></div>
+          <p class="staff-panel-copy">For reports, live scoreboards, tournament brackets, standings and matchday team sheets, edit the complete match data object below. Keep the published structure valid JSON.</p>
+          <label class="staff-field"><span>MATCH DATA JSON</span><textarea id="match-json-editor" class="staff-json-editor" spellcheck="false" rows="16"></textarea></label>
+          <div class="staff-form-actions"><button type="button" class="staff-secondary-button" id="format-match-json">FORMAT JSON</button><button type="button" class="staff-primary-button" id="apply-match-json">APPLY MATCH DATA</button></div>
+        </div>
+      </section>
+
+      <section class="staff-view" data-view="publish">
+        <div class="staff-view-heading"><div><div class="staff-eyebrow">EXPORT / RELEASE PIPELINE</div><h2>PUBLISH <em>CENTER.</em></h2></div><span class="staff-local-pill">REPOSITORY WORKFLOW</span></div>
+        <div class="staff-publish-intro"><div class="staff-publish-symbol">↥</div><div><h3>TAKE YOUR CHANGES LIVE.</h3><p>Export the data files from this workspace, then replace the matching files in the GitHub repository. The live website updates after GitHub Pages publishes the commit.</p></div></div>
+        <div class="staff-export-grid">
+          <article class="staff-export-card"><div class="staff-export-type">01 / CALENDAR</div><h3>events.js</h3><p>All confirmed practices, matches, tryouts and team events.</p><button type="button" class="staff-primary-button" data-export="events">DOWNLOAD EVENTS.JS ↧</button></article>
+          <article class="staff-export-card"><div class="staff-export-type">02 / PLAYER DATA</div><h3>records.js</h3><p>Player statistics and the Player of the Match archive.</p><button type="button" class="staff-primary-button" data-export="records">DOWNLOAD RECORDS.JS ↧</button></article>
+          <article class="staff-export-card"><div class="staff-export-type">03 / MATCH HUB</div><h3>match-data.js</h3><p>Fixtures, results, standings, reports, brackets and matchday data.</p><button type="button" class="staff-primary-button" data-export="matches">DOWNLOAD MATCH-DATA.JS ↧</button></article>
+        </div>
+        <div class="staff-export-actions"><button type="button" class="staff-primary-button" id="export-pack">DOWNLOAD FULL BACKUP PACK ↧</button><label class="staff-secondary-button staff-import-label">IMPORT BACKUP JSON <input id="import-pack" type="file" accept=".json,application/json" hidden></label><button type="button" class="staff-danger-button" id="reset-draft">RESET LOCAL DRAFT</button></div>
+        <div class="staff-publish-steps"><div><b>1</b><span>Download the updated .js file(s).</span></div><div><b>2</b><span>Open the repository's matching file under <code>assets/</code>.</span></div><div><b>3</b><span>Replace the file contents and commit the change to <code>main</code>.</span></div><div><b>4</b><span>Refresh the website after GitHub Pages finishes deploying.</span></div></div>
+        <div class="staff-form-panel staff-spaced-panel">
+          <div class="staff-panel-heading"><div><div class="staff-eyebrow">ADVANCED RECORDS EDITOR</div><h3>PLAYER RECORDS JSON</h3></div><span class="staff-form-mark">{ }</span></div>
+          <p class="staff-panel-copy">For advanced edits, you can edit the entire statistics and awards data object. This editor validates JSON before applying it.</p>
+          <label class="staff-field"><span>RECORDS JSON</span><textarea id="records-json-editor" class="staff-json-editor" spellcheck="false" rows="14"></textarea></label>
+          <div class="staff-form-actions"><button type="button" class="staff-secondary-button" id="format-records-json">FORMAT JSON</button><button type="button" class="staff-primary-button" id="apply-records-json">APPLY RECORDS</button></div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="staff-toast" id="staff-toast" role="status" aria-live="polite"></div>
+</main>
+<footer class="site-footer"><div class="page-width footer-main"><a class="brand" href="/"><img src="/assets/crest.png" alt="" class="brand-crest"><span class="brand-copy"><strong>UNITED STATES</strong><small>NATIONAL TEAM · ROBLOX</small></span></a><p class="footer-motto">ONE TEAM. ONE NATION.</p><a class="feature-link" href="/support/">SUPPORT THE TEAM →</a></div><div class="page-width footer-bottom"><span>© <span data-current-year>2026</span> USA NATIONAL TEAM · FAN-MADE ROBLOX TEAM WEBSITE</span><span class="disclaimer">Not affiliated with Roblox, EA SPORTS, FIFA, or U.S. Soccer.</span></div></footer>
+</body></html>
