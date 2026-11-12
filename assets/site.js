@@ -8,9 +8,13 @@
 
   function installLaunchGate() {
     if (document.querySelector(".launch-gate")) return;
-    const launchStart = Date.parse("2026-11-12T03:43:00Z"); // Nov 11, 10:43 PM EST
-    const previewEnd = Date.parse("2026-11-12T03:46:00Z"); // Nov 11, 10:46 PM EST
-    const fullRelease = Date.parse("2026-11-12T23:00:00Z"); // Nov 12, 6:00 PM EST
+
+    // Eastern Standard Time (UTC-5): Nov 11 preview 10:50-11:00 PM;
+    // full website release Nov 12 at 6:00 PM EST.
+    const launchStart = Date.parse("2026-11-12T03:50:00Z");
+    const previewEnd = Date.parse("2026-11-12T04:00:00Z");
+    const fullRelease = Date.parse("2026-11-12T23:00:00Z");
+    const allowedTeaserPaths = new Set(["/", "/squad/", "/lineup/", "/about/"]);
 
     const gate = document.createElement("section");
     gate.className = "launch-gate";
@@ -38,18 +42,107 @@
 
     const lockedNodes = Array.from(document.body.children)
       .filter((node) => node !== gate)
-      .map((node) => ({ node, wasInert: node.inert, hadAriaHidden: node.hasAttribute("aria-hidden"), ariaHidden: node.getAttribute("aria-hidden") }));
+      .map((node) => ({
+        node,
+        wasInert: node.inert,
+        hadAriaHidden: node.hasAttribute("aria-hidden"),
+        ariaHidden: node.getAttribute("aria-hidden")
+      }));
     const pad = (n) => String(n).padStart(2, "0");
     const countdown = gate.querySelector(".launch-countdown");
     const heading = gate.querySelector(".launch-title");
     const message = gate.querySelector(".launch-message");
     const label = gate.querySelector(".launch-count-label");
     const progress = gate.querySelector(".launch-progress");
-    const foot = gate.querySelector(".launch-foot");
     let mode = "";
+    let pageLock = null;
+    let pageLockSaved = [];
 
+    function normalizePath(path) {
+      if (!path || path === "/") return "/";
+      return path.endsWith("/") ? path : path + "/";
+    }
+    function isTeaserRestrictedPath(path) {
+      return !allowedTeaserPaths.has(normalizePath(path));
+    }
+    function blockTeaserLink(event) {
+      if (event.currentTarget.dataset.teaserLocked === "true") {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }
+    }
+    function setTeaserLocks(enabled) {
+      document.querySelectorAll("a[href]").forEach((item) => {
+        let url;
+        try { url = new URL(item.href, window.location.href); } catch (_) { return; }
+        if (url.origin !== window.location.origin) return;
+
+        const restricted = enabled && isTeaserRestrictedPath(url.pathname);
+        item.classList.toggle("teaser-restricted", restricted);
+        if (restricted) {
+          item.setAttribute("aria-disabled", "true");
+          item.dataset.teaserLocked = "true";
+          item.addEventListener("click", blockTeaserLink, true);
+        } else {
+          item.removeAttribute("aria-disabled");
+          delete item.dataset.teaserLocked;
+          item.removeEventListener("click", blockTeaserLink, true);
+        }
+      });
+    }
+    function setTeaserPageLock(enabled) {
+      const shouldLock = enabled && isTeaserRestrictedPath(window.location.pathname);
+      if (!shouldLock) {
+        if (pageLock) {
+          pageLockSaved.forEach(({ node, inert, hadAriaHidden, ariaHidden }) => {
+            if (!node.isConnected) return;
+            node.inert = inert;
+            if (hadAriaHidden) node.setAttribute("aria-hidden", ariaHidden);
+            else node.removeAttribute("aria-hidden");
+          });
+          pageLock.remove();
+          pageLock = null;
+          pageLockSaved = [];
+        }
+        body.classList.remove("teaser-page-locked");
+        return;
+      }
+      if (pageLock) return;
+
+      pageLock = document.createElement("section");
+      pageLock.className = "teaser-page-lock";
+      pageLock.setAttribute("role", "dialog");
+      pageLock.setAttribute("aria-modal", "true");
+      pageLock.setAttribute("aria-label", "Feature locked until full website release");
+      pageLock.innerHTML = `
+        <div class="teaser-page-lock-card">
+          <div class="teaser-page-lock-icon" aria-hidden="true">🔒</div>
+          <div class="teaser-page-lock-kicker">LIMITED SNEAK PEEK ACCESS</div>
+          <h1>THIS AREA IS<br><em>LOCKED.</em></h1>
+          <p>This section will become available with the full USA National Team website release.</p>
+          <div class="teaser-page-lock-time">FULL RELEASE · NOVEMBER 12 · 6:00 PM EST</div>
+          <a href="/" class="teaser-return-link">RETURN TO SNEAK PEEK</a>
+        </div>`;
+      pageLockSaved = Array.from(document.body.children).map((node) => ({
+        node,
+        inert: node.inert,
+        hadAriaHidden: node.hasAttribute("aria-hidden"),
+        ariaHidden: node.getAttribute("aria-hidden")
+      }));
+      document.body.append(pageLock);
+      pageLockSaved.forEach(({ node }) => {
+        node.inert = true;
+        node.setAttribute("aria-hidden", "true");
+      });
+      body.classList.add("teaser-page-locked");
+      pageLock.tabIndex = -1;
+      pageLock.focus({ preventScroll: true });
+    }
     function lockPage() {
-      lockedNodes.forEach(({ node }) => { node.inert = true; node.setAttribute("aria-hidden", "true"); });
+      lockedNodes.forEach(({ node }) => {
+        node.inert = true;
+        node.setAttribute("aria-hidden", "true");
+      });
       document.documentElement.classList.add("launch-locked");
       body.classList.add("launch-locked");
       gate.style.display = "grid";
@@ -65,24 +158,6 @@
       document.documentElement.classList.remove("launch-locked");
       body.classList.remove("launch-locked");
     }
-    function setTeaserLocks(enabled) {
-      document.querySelectorAll(".revamp-hub-grid a, .revamp-join .revamp-button").forEach((item, index) => {
-        const restricted = enabled && (item.matches(".revamp-join .revamp-button") || index >= 4);
-        item.classList.toggle("teaser-restricted", restricted);
-        if (restricted) {
-          item.setAttribute("aria-disabled", "true");
-          item.dataset.teaserLocked = "true";
-          item.addEventListener("click", blockTeaserLink, { capture: true });
-        } else {
-          item.removeAttribute("aria-disabled");
-          delete item.dataset.teaserLocked;
-          item.removeEventListener("click", blockTeaserLink, { capture: true });
-        }
-      });
-    }
-    function blockTeaserLink(event) {
-      if (event.currentTarget.dataset.teaserLocked === "true") event.preventDefault();
-    }
     function updateCountdown(ms) {
       const seconds = Math.max(0, Math.floor(ms / 1000));
       gate.querySelector("[data-count-days]").textContent = pad(Math.floor(seconds / 86400));
@@ -93,28 +168,34 @@
     function tick() {
       const now = Date.now();
       if (now >= fullRelease) {
-        unlockPage();
+        setTeaserPageLock(false);
         setTeaserLocks(false);
+        body.classList.remove("teaser-unlocked");
+        unlockPage();
         gate.classList.add("launch-gate-exit");
         window.setTimeout(() => gate.remove(), 850);
         window.clearInterval(timer);
         return;
       }
+
       if (now >= launchStart && now < previewEnd) {
         if (mode !== "teaser") {
           mode = "teaser";
           unlockPage();
-          setTeaserLocks(true);
           gate.style.display = "none";
           body.classList.add("teaser-unlocked");
         }
+        // Reapply on each tick so nav links created later by site.js are restricted too.
+        setTeaserLocks(true);
+        setTeaserPageLock(true);
         return;
       }
+
       if (mode !== "locked") {
         mode = "locked";
+        setTeaserPageLock(false);
         setTeaserLocks(false);
         body.classList.remove("teaser-unlocked");
-        gate.style.display = "grid";
         lockPage();
       }
       if (now < launchStart) {
