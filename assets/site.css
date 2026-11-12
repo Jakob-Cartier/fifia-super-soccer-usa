@@ -1002,3 +1002,39 @@ html.launch-locked body > :not(.launch-gate) {
   .launch-gate-inner { transform:scale(.82); }
   .launch-countdown > div { min-height: 125px; }
 }
+
+
+/* === LIMITED SNEAK-PEEK ACCESS === */
+body.teaser-unlocked::before{
+  content:"USA NATIONAL TEAM  /  SNEAK PEEK ACCESS  ·  FULL WEBSITE RELEASES NOV 12 AT 6:00 PM EST";
+  position:fixed;top:0;left:0;right:0;z-index:99999;
+  min-height:34px;display:flex;align-items:center;justify-content:center;
+  padding:8px 14px;background:#07101f;color:#b9dfff;
+  border-bottom:1px solid #9bdcff55;text-align:center;
+  font-size:9px;font-weight:950;letter-spacing:.13em;
+  box-shadow:0 8px 28px #0008;
+}
+body.teaser-unlocked .site-header{top:34px}
+.teaser-restricted{
+  position:relative!important;isolation:isolate!important;overflow:hidden!important;
+  filter:grayscale(1)!important;cursor:not-allowed!important;
+}
+.teaser-restricted::before{
+  content:"";position:absolute;inset:0;z-index:20;
+  background:rgba(0,0,0,.88);backdrop-filter:grayscale(1) blur(1px);
+}
+.teaser-restricted::after{
+  content:"🔒  LOCKED · FULL RELEASE";
+  position:absolute;z-index:21;left:8px;right:8px;top:50%;
+  transform:translateY(-50%);padding:12px 8px;
+  color:#fff;background:#050505;border:1px solid #ffffff45;
+  text-align:center;font-size:9px;font-weight:1000;letter-spacing:.12em;
+  box-shadow:0 8px 30px #000b;
+}
+.teaser-restricted:hover{transform:none!important}
+body.teaser-unlocked{padding-top:34px}
+@media(max-width:620px){
+  body.teaser-unlocked::before{font-size:7px;letter-spacing:.06em;min-height:34px}
+  body.teaser-unlocked .site-header{top:34px}
+  .teaser-restricted::after{font-size:8px;padding:10px 4px}
+}
