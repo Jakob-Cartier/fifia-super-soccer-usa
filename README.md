@@ -21,6 +21,7 @@ A responsive, multi-page website for the custom USA National Team in Roblox FIFA
 - /about/ — Team purpose, Roblox expectations, and membership information
 - /apply/ — Player application form
 - /support/ — Website support and Tawk.to live chat
+- /staff/ — Staff Workspace for local calendar, records, awards, fixtures and match-data drafts
 
 Each section is a folder with its own index.html, so page URLs do not end in .html.
 
@@ -68,7 +69,7 @@ The player card gallery and squad depth chart use the current roster information
 
 ## Match Center and competition tools
 
-The Live Match Center, standings, match reports, tournament bracket, and matchday team sheet share the data in `assets/match-data.js`. This is a static GitHub Pages data feed: staff edit and commit the file, GitHub Pages deploys the change, and visitors use **Refresh Feed** or reload the page to see it. The site does not provide a secure browser-based staff editor or push-based live scoring.
+The Live Match Center, standings, match reports, tournament bracket, and matchday team sheet share the data in `assets/match-data.js`. This is a static GitHub Pages data feed: staff can prepare edits in the local Staff Workspace, export the data file, and commit it; GitHub Pages deploys the change, and visitors use **Refresh Feed** or reload the page to see it. The site does not provide secure browser-based sign-in or push-based live scoring.
 
 - `liveMatch`: current scoreboard. Use `null` when no match is live. For a live game, set `status`, `date`, `competition`, `homeName`, `awayName`, `homeScore`, `awayScore`, and optional `clock`, `venue`, `note`, and `events`. Event types include `goal`, `own-goal`, `yellow-card`, `red-card`, `substitution`, `penalty`, and `note`. Status values: `live`, `halftime`, `fulltime`, or `scheduled`.
 - `fixtures`: an array of confirmed upcoming matches: `id`, `date` (YYYY-MM-DD), `time`, `competition`, `opponent`, `venue`, and `status`.
@@ -82,9 +83,15 @@ Leave unknown sections as `null` or empty arrays. Do not create fictional match 
 
 **Publishing process:** Edit `assets/match-data.js`, commit the changes to `main`, then increase the `?v=` number for `assets/match-data.js` in `matches/index.html`, `standings/index.html`, `reports/index.html`, `tournaments/index.html`, and `matchday/index.html`. This cache-bust makes visitors load the new feed after GitHub Pages deploys.
 
-## Website themes
+## Staff Workspace
 
-The site offers Winter Midnight, Frost White, Aurora Ice, and USA Classic. The selected theme is saved in the visitor's browser.
+The staff workspace is available at `/staff/`. It provides forms to add/remove calendar events, edit player statistics, add/remove Player of the Match awards, and manage fixtures and final results. Advanced JSON editors cover the complete records and match-data objects, including standings, reports, tournaments, live-match details and matchday announcements.
+
+**Important publishing and security limits:** this website is hosted on static GitHub Pages. The staff workspace is a browser-local editor, not a protected staff login and not a live GitHub publishing service. Drafts are stored in that staff member's browser only. Use the Publish Center to download `events.js`, `records.js`, and `match-data.js`, then replace the matching files in `assets/` and commit them to the repository. A secure multi-user login and direct publishing workflow requires a separate authenticated backend; never put a GitHub token, password, or private key in this website.
+
+## Website visual system
+
+The site uses the Fieldhouse Edition design: warm paper backgrounds, deep navy editorial sections, USA red accents, stronger typography and squared-off sports-broadcast panels. The countdown remains a separate dark launch overlay.
 
 ## Support chat
 
