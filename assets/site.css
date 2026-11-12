@@ -1551,3 +1551,26 @@ html.launch-locked body> :not(.launch-gate){filter:blur(13px) brightness(.48) sa
   .staff-publish-steps{grid-template-columns:1fr}
   .staff-publish-intro{align-items:flex-start;padding:17px}
 }
+
+/* Lock the redesigned neutral-paper palette regardless of the visitor's saved legacy theme. */
+body[data-theme]{
+  color-scheme:light;
+  --bg:#f1efe9;
+  --bg2:#e3e0d7;
+  --panel:#fffefa;
+  --panel2:#e8e5dc;
+  --text:#111c2c;
+  --muted:#626d7c;
+  --accent:#17458a;
+  --accent2:#dd3b35;
+  --line:rgba(17,28,44,.14);
+  --soft:#dce8f8;
+  background:var(--bg);
+  color:var(--text);
+}
+body[data-theme] .site-header{background:#101c2d!important;color:#fff!important}
+body[data-theme] .site-footer{background:#101c2d!important;color:#fff!important}
+body[data-theme] .announcement-bar{background:#d93c37!important;color:#fff!important}
+body[data-theme] .primary-nav{color:#c2cad5!important}
+body[data-theme] .brand-copy strong{color:#fff!important}
+body[data-theme] .brand-copy small{color:#aeb9c8!important}
