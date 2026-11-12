@@ -8,6 +8,10 @@
 
   function installLaunchGate() {
     if (document.querySelector(".launch-gate")) return;
+    const launchStart = Date.parse("2026-11-12T03:43:00Z"); // Nov 11, 10:43 PM EST
+    const previewEnd = Date.parse("2026-11-12T03:46:00Z"); // Nov 11, 10:46 PM EST
+    const fullRelease = Date.parse("2026-11-12T23:00:00Z"); // Nov 12, 6:00 PM EST
+
     const gate = document.createElement("section");
     gate.className = "launch-gate";
     gate.setAttribute("role", "dialog");
@@ -20,7 +24,7 @@
         <div class="launch-kicker"><span class="launch-live-dot"></span> USA NATIONAL TEAM · WEBSITE UPDATE</div>
         <h1 class="launch-title">A NEW ERA<br><em>IS COMING.</em></h1>
         <p class="launch-message">The next chapter of the USA National Team is almost ready.</p>
-        <div class="launch-count-label">OFFICIAL REVEAL IN</div>
+        <div class="launch-count-label">SNEAK PEEK OPENS IN</div>
         <div class="launch-countdown" aria-live="off">
           <div><b data-count-days>00</b><span>DAYS</span></div>
           <div><b data-count-hours>00</b><span>HOURS</span></div>
@@ -29,96 +33,55 @@
         </div>
         <div class="launch-progress"><span></span></div>
         <div class="launch-foot"><span>ONE TEAM. ONE NATION.</span><span>EST. FOR THE GAME</span></div>
-      </div>
-      <div class="launch-preview" hidden>
-        <div class="preview-orbit preview-orbit-a"></div><div class="preview-orbit preview-orbit-b"></div>
-        <div class="preview-scan"></div>
-        <div class="preview-crest"><img src="/assets/crest.png" alt="USA crest"></div>
-        <div class="preview-kicker">THE FUTURE OF THE SQUAD</div>
-        <h2>THE WAIT<br><em>IS ALMOST OVER.</em></h2>
-        <p>A first look at what's next.</p>
-        <div class="preview-build"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-        <div class="preview-lock-note">PREVIEW WINDOW · LIMITED REVEAL</div>
       </div>`;
     document.body.append(gate);
-    // Lock every underlying page section until the scheduled full release.
+
     const lockedNodes = Array.from(document.body.children)
       .filter((node) => node !== gate)
-      .map((node) => ({
-        node,
-        wasInert: node.inert,
-        hadAriaHidden: node.hasAttribute("aria-hidden"),
-        ariaHidden: node.getAttribute("aria-hidden")
-      }));
-    lockedNodes.forEach(({ node }) => {
-      node.inert = true;
-      node.setAttribute("aria-hidden", "true");
-    });
-    gate.tabIndex = -1;
-    gate.focus({ preventScroll: true });
-    document.documentElement.classList.add("launch-locked");
-    body.classList.add("launch-locked");
-
+      .map((node) => ({ node, wasInert: node.inert, hadAriaHidden: node.hasAttribute("aria-hidden"), ariaHidden: node.getAttribute("aria-hidden") }));
+    const pad = (n) => String(n).padStart(2, "0");
     const countdown = gate.querySelector(".launch-countdown");
-    const preview = gate.querySelector(".launch-preview");
     const heading = gate.querySelector(".launch-title");
     const message = gate.querySelector(".launch-message");
     const label = gate.querySelector(".launch-count-label");
-    const foot = gate.querySelector(".launch-foot");
     const progress = gate.querySelector(".launch-progress");
-    let released = false;
+    const foot = gate.querySelector(".launch-foot");
+    let mode = "";
 
-    const pad = (n) => String(n).padStart(2, "0");
-    function tick() {
-      const now = Date.now();
-      if (now >= fullRelease) {
-        released = true;
-        gate.classList.add("launch-gate-exit");
-        document.documentElement.classList.remove("launch-locked");
-        body.classList.remove("launch-locked");
-        lockedNodes.forEach(({ node, wasInert, hadAriaHidden, ariaHidden }) => {
-          node.inert = wasInert;
-          if (hadAriaHidden) node.setAttribute("aria-hidden", ariaHidden);
-          else node.removeAttribute("aria-hidden");
-        });
-        window.setTimeout(() => gate.remove(), 850);
-        window.clearInterval(timer);
-        return;
-      }
-      if (now >= launchStart && now < previewEnd) {
-        gate.classList.add("is-preview");
-        countdown.hidden = true;
-        label.hidden = true;
-        progress.hidden = true;
-        heading.hidden = true;
-        message.hidden = true;
-        foot.hidden = true;
-        preview.hidden = false;
-        return;
-      }
-      gate.classList.remove("is-preview");
-      preview.hidden = true;
-      countdown.hidden = false;
-      label.hidden = false;
-      progress.hidden = false;
-      heading.hidden = false;
-      message.hidden = false;
-      foot.hidden = false;
-      if (now < launchStart) {
-        heading.innerHTML = "A NEW ERA<br><em>IS COMING.</em>";
-        message.textContent = "The next chapter of the USA National Team is almost ready.";
-        label.textContent = "FIRST REVEAL IN";
-        countdown.setAttribute("aria-label", "Countdown to first reveal");
-        updateCountdown(launchStart - now);
-        progress.style.setProperty("--progress", String(Math.max(0, Math.min(100, (now / launchStart) * 100)) ) + "%");
-      } else {
-        heading.innerHTML = "THE FULL<br><em>REVEAL AWAITS.</em>";
-        message.textContent = "The preview has closed. The complete team website opens tomorrow.";
-        label.textContent = "FULL WEBSITE RELEASE IN";
-        countdown.setAttribute("aria-label", "Countdown to full website release");
-        updateCountdown(fullRelease - now);
-        progress.style.setProperty("--progress", String(Math.max(0, Math.min(100, ((now - previewEnd) / (fullRelease - previewEnd)) * 100))) + "%");
-      }
+    function lockPage() {
+      lockedNodes.forEach(({ node }) => { node.inert = true; node.setAttribute("aria-hidden", "true"); });
+      document.documentElement.classList.add("launch-locked");
+      body.classList.add("launch-locked");
+      gate.style.display = "grid";
+      gate.tabIndex = -1;
+      gate.focus({ preventScroll: true });
+    }
+    function unlockPage() {
+      lockedNodes.forEach(({ node, wasInert, hadAriaHidden, ariaHidden }) => {
+        node.inert = wasInert;
+        if (hadAriaHidden) node.setAttribute("aria-hidden", ariaHidden);
+        else node.removeAttribute("aria-hidden");
+      });
+      document.documentElement.classList.remove("launch-locked");
+      body.classList.remove("launch-locked");
+    }
+    function setTeaserLocks(enabled) {
+      document.querySelectorAll(".revamp-hub-grid a, .revamp-join .revamp-button").forEach((item, index) => {
+        const restricted = enabled && (item.matches(".revamp-join .revamp-button") || index >= 4);
+        item.classList.toggle("teaser-restricted", restricted);
+        if (restricted) {
+          item.setAttribute("aria-disabled", "true");
+          item.dataset.teaserLocked = "true";
+          item.addEventListener("click", blockTeaserLink, { capture: true });
+        } else {
+          item.removeAttribute("aria-disabled");
+          delete item.dataset.teaserLocked;
+          item.removeEventListener("click", blockTeaserLink, { capture: true });
+        }
+      });
+    }
+    function blockTeaserLink(event) {
+      if (event.currentTarget.dataset.teaserLocked === "true") event.preventDefault();
     }
     function updateCountdown(ms) {
       const seconds = Math.max(0, Math.floor(ms / 1000));
@@ -127,7 +90,51 @@
       gate.querySelector("[data-count-minutes]").textContent = pad(Math.floor((seconds % 3600) / 60));
       gate.querySelector("[data-count-seconds]").textContent = pad(seconds % 60);
     }
-    const timer = window.setInterval(tick, 250);
+    function tick() {
+      const now = Date.now();
+      if (now >= fullRelease) {
+        unlockPage();
+        setTeaserLocks(false);
+        gate.classList.add("launch-gate-exit");
+        window.setTimeout(() => gate.remove(), 850);
+        window.clearInterval(timer);
+        return;
+      }
+      if (now >= launchStart && now < previewEnd) {
+        if (mode !== "teaser") {
+          mode = "teaser";
+          unlockPage();
+          setTeaserLocks(true);
+          gate.style.display = "none";
+          body.classList.add("teaser-unlocked");
+        }
+        return;
+      }
+      if (mode !== "locked") {
+        mode = "locked";
+        setTeaserLocks(false);
+        body.classList.remove("teaser-unlocked");
+        gate.style.display = "grid";
+        lockPage();
+      }
+      if (now < launchStart) {
+        heading.innerHTML = "A NEW ERA<br><em>IS COMING.</em>";
+        message.textContent = "The next chapter of the USA National Team is almost ready.";
+        label.textContent = "SNEAK PEEK OPENS IN";
+        countdown.setAttribute("aria-label", "Countdown to sneak peek");
+        updateCountdown(launchStart - now);
+        progress.style.setProperty("--progress", Math.max(0, Math.min(100, (now / launchStart) * 100)) + "%");
+      } else {
+        heading.innerHTML = "THE FULL<br><em>REVEAL AWAITS.</em>";
+        message.textContent = "The sneak peek has closed. The complete website opens tomorrow.";
+        label.textContent = "FULL WEBSITE RELEASE IN";
+        countdown.setAttribute("aria-label", "Countdown to full website release");
+        updateCountdown(fullRelease - now);
+        progress.style.setProperty("--progress", Math.max(0, Math.min(100, ((now - previewEnd) / (fullRelease - previewEnd)) * 100)) + "%");
+      }
+    }
+    lockPage();
+    const timer = window.setInterval(tick, 200);
     tick();
   }
   installLaunchGate();
