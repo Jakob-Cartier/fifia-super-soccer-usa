@@ -6,10 +6,10 @@
     if (document.querySelector(".launch-gate")) return;
 
     // Eastern Standard Time (UTC-5): Nov 11 preview 10:50-11:00 PM;
-    // full website release Nov 12 at 6:00 PM EST.
+    // full website release Nov 12 at 4:20 PM EST.
     const launchStart = Date.parse("2026-11-12T03:50:00Z");
     const previewEnd = Date.parse("2026-11-12T04:00:00Z");
-    const fullRelease = Date.parse("2026-11-12T23:00:00Z");
+    const fullRelease = Date.parse("2026-11-12T21:20:00Z");
     const allowedTeaserPaths = new Set(["/", "/squad/", "/lineup/", "/about/"]);
 
     const gate = document.createElement("section");
@@ -116,7 +116,7 @@
           <div class="teaser-page-lock-kicker">LIMITED SNEAK PEEK ACCESS</div>
           <h1>THIS AREA IS<br><em>LOCKED.</em></h1>
           <p>This section will become available with the full USA National Team website release.</p>
-          <div class="teaser-page-lock-time">FULL RELEASE · NOVEMBER 12 · 6:00 PM EST</div>
+          <div class="teaser-page-lock-time">FULL RELEASE · NOVEMBER 12 · 4:20 PM EST</div>
           <a href="/" class="teaser-return-link">RETURN TO SNEAK PEEK</a>
         </div>`;
       pageLockSaved = Array.from(document.body.children).map((node) => ({
@@ -203,7 +203,7 @@
         progress.style.setProperty("--progress", Math.max(0, Math.min(100, (now / launchStart) * 100)) + "%");
       } else {
         heading.innerHTML = "THE FULL<br><em>REVEAL AWAITS.</em>";
-        message.textContent = "The sneak peek has closed. The complete website opens November 12 at 6:00 PM EST.";
+        message.textContent = "The complete USA National Team website opens November 12 at 4:20 PM EST.";
         label.textContent = "FULL WEBSITE RELEASE IN";
         countdown.setAttribute("aria-label", "Countdown to full website release");
         updateCountdown(fullRelease - now);
