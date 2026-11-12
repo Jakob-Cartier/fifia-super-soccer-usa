@@ -1006,7 +1006,7 @@ html.launch-locked body > :not(.launch-gate) {
 
 /* === LIMITED SNEAK-PEEK ACCESS === */
 body.teaser-unlocked::before{
-  content:"USA NATIONAL TEAM  /  SNEAK PEEK ACCESS  ·  FULL WEBSITE RELEASES NOV 12 AT 6:00 PM EST";
+  content:"USA NATIONAL TEAM  /  SNEAK PEEK ACCESS  ·  FULL WEBSITE RELEASES NOV 12 AT 4:20 PM EST";
   position:fixed;top:0;left:0;right:0;z-index:99999;
   min-height:34px;display:flex;align-items:center;justify-content:center;
   padding:8px 14px;background:#07101f;color:#b9dfff;
