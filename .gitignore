@@ -1,0 +1,6 @@
+# Never commit local Firebase service-account credentials or environment files.
+.env
+.env.*
+!.env.example
+*service-account*.json
+*firebase-adminsdk*.json
