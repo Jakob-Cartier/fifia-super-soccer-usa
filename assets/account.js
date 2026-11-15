@@ -180,8 +180,8 @@ if (!firebaseConfigured || !auth) {
         console.warn("Account profile storage is not configured yet.", profileError);
       }
       await sendEmailVerification(credential.user);
-      setMessage("Account created. A verification email has been sent. Check your inbox.", false);
       await renderSignedIn(credential.user);
+      setMessage("Account created. A verification email has been sent. Check your inbox.", false, $("#signed-in-message"));
     } catch (error) {
       setMessage(friendlyError(error), true);
     } finally {
