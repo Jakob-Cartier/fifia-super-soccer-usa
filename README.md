@@ -21,7 +21,9 @@ A responsive, multi-page website for the custom USA National Team in Roblox FIFA
 - /about/ — Team purpose, Roblox expectations, and membership information
 - /apply/ — Player application form
 - /support/ — Website support and Tawk.to live chat
-- /staff/ — Staff Workspace for local calendar, records, awards, fixtures and match-data drafts
+- /account/ — Google/email account sign-up, sign-in, profile and password reset
+- /admin/ — Protected administrator console
+- /staff/ — Administrator-only Staff Workspace for calendar, records, awards and match data
 
 Each section is a folder with its own index.html, so page URLs do not end in .html.
 
