@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && request.auth.token.admin == true;
+    }
+
+    // Private account profile. Users can edit only basic profile fields.
+    // Role and admin permissions are never writable from the browser.
+    match /users/{userId} {
+      allow read: if signedIn() && (request.auth.uid == userId || isAdmin());
+
+      allow create: if signedIn()
+        && request.auth.uid == userId
+        && request.resource.data.keys().hasOnly([
+          'uid', 'displayName', 'photoURL', 'createdAt', 'updatedAt'
+        ])
+        && request.resource.data.uid == userId;
+
+      allow update: if signedIn()
+        && request.auth.uid == userId
+        && request.resource.data.keys().hasOnly([
+          'uid', 'displayName', 'photoURL', 'createdAt', 'updatedAt'
+        ])
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'displayName', 'photoURL', 'updatedAt'
+        ]);
+
+      allow delete: if false;
+    }
+
+    // Public team content can be read by visitors.
+    // Only accounts with a server-issued Firebase admin custom claim can publish.
+    match /siteContent/{documentId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Deny everything that is not explicitly granted above.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
