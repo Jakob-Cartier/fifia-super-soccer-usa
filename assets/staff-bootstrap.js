@@ -5,6 +5,7 @@ const shell = document.querySelector(".staff-main");
 
 function deny(title, detail, showSignOut = false) {
   if (!shell) return;
+  shell.hidden = false;
   shell.innerHTML = "";
   const card = document.createElement("section");
   card.className = "staff-access-gate";
@@ -23,6 +24,8 @@ function deny(title, detail, showSignOut = false) {
   shell.append(card);
 }
 
+if (shell) shell.hidden = true;
+
 if (!firebaseConfigured || !auth) {
   deny("ACCOUNT SYSTEM NOT CONNECTED.", "Firebase setup is required before staff access can be checked. Configure the Firebase web app first.");
 } else {
@@ -40,6 +43,7 @@ if (!firebaseConfigured || !auth) {
         return;
       }
 
+      if (shell) shell.hidden = false;
       const layout = document.querySelector(".staff-layout");
       if (layout) {
         const bar = document.createElement("div");
