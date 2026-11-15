@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101c2d">
+<meta name="description" content="Create or sign in to your USA National Team website account.">
+<meta name="robots" content="noindex, nofollow">
+<title>Sign in / Create Account | USA National Team</title>
+<link rel="icon" href="/assets/crest.png" type="image/png">
+<link rel="stylesheet" href="/assets/site.css?v=19">
+<script src="/assets/site.js?v=19" defer></script>
+<script type="module" src="/assets/account.js?v=1"></script>
+</head>
+<body data-theme="winter-midnight">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="announcement-bar"><span class="announcement-dot" aria-hidden="true"></span><span>USA NATIONAL TEAM</span><span class="announcement-divider" aria-hidden="true"></span><span class="announcement-muted">MEMBER ACCOUNT</span></div>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="/" aria-label="USA National Team home"><img src="/assets/crest.png" alt="" class="brand-crest"><span class="brand-copy"><strong>UNITED STATES</strong><small>NATIONAL TEAM · ROBLOX</small></span></a>
+<button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button>
+<nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
+<a href="/squad/">The Squad</a><a href="/lineup/">Lineup</a><a href="/matches/">Match Center</a><a href="/calendar/">Calendar</a><a href="/account/" aria-current="page" class="account-nav-link">Account</a>
+</nav></div></header>
+<main id="main" class="account-page">
+  <section class="account-visual">
+    <div class="account-visual-grid" aria-hidden="true"></div>
+    <div class="account-crest-orbit"><div class="account-orbit orbit-a"></div><div class="account-orbit orbit-b"></div><img src="/assets/crest.png" alt="USA National Team crest"></div>
+    <div class="account-brand-copy"><span>ONE TEAM. ONE NATION.</span><h1>YOUR TEAM.<br><em>YOUR ACCOUNT.</em></h1><p>Sign in to access your member profile and the features reserved for your account.</p></div>
+    <div class="account-visual-footer"><span>USA / MEMBER SERVICES</span><span>ROBLOX FIFA SUPER SOCCER</span></div>
+  </section>
+  <section class="account-workspace">
+    <div class="account-workspace-top"><a href="/" class="account-back">← BACK TO WEBSITE</a><span class="account-secure-label"><i></i> SECURE SIGN-IN</span></div>
+
+    <div id="firebase-setup-note" class="firebase-setup-note" hidden>
+      <strong>Firebase setup required</strong>
+      <p>The account screen is installed, but sign-in is not active yet. Add the Firebase web app configuration and enable the sign-in providers to connect real accounts.</p>
+      <a href="https://console.firebase.google.com/" target="_blank" rel="noopener noreferrer">OPEN FIREBASE CONSOLE ↗</a>
+    </div>
+
+    <div id="auth-panel" class="account-card">
+      <div class="account-card-heading"><div class="account-eyebrow">MEMBER ACCESS</div><h2>WELCOME <em>BACK.</em></h2><p>Sign in to continue, or create an account to get started.</p></div>
+      <button type="button" id="google-signin" class="google-signin-button">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.73 7.17l7.62 5.91c4.45-4.11 7.15-10.17 7.15-17.55z"/><path fill="#FBBC05" d="M10.53 28.59A14.4 14.4 0 0 1 9.75 24c0-1.59.27-3.13.76-4.59l-7.98-6.2A23.9 23.9 0 0 0 0 24c0 3.87.93 7.52 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.91-5.9l-7.62-5.91c-2.12 1.43-4.84 2.27-8.29 2.27-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        CONTINUE WITH GOOGLE
+      </button>
+      <div class="account-or-divider"><span></span> OR CONTINUE WITH EMAIL <span></span></div>
+      <div class="account-auth-tabs" role="tablist" aria-label="Account access">
+        <button type="button" class="account-auth-tab is-active" data-auth-tab="signin" role="tab" aria-selected="true">SIGN IN</button>
+        <button type="button" class="account-auth-tab" data-auth-tab="signup" role="tab" aria-selected="false">CREATE ACCOUNT</button>
+      </div>
+      <form id="signin-form" class="account-form">
+        <label class="account-field"><span>EMAIL ADDRESS</span><input type="email" name="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"></label>
+        <label class="account-field"><span>PASSWORD</span><input type="password" name="password" autocomplete="current-password" required minlength="6" placeholder="Your password"></label>
+        <button type="button" id="forgot-password" class="account-forgot">FORGOT PASSWORD?</button>
+        <button type="submit" class="account-submit">SIGN IN <b>→</b></button>
+      </form>
+      <form id="signup-form" class="account-form" hidden>
+        <label class="account-field"><span>DISPLAY NAME</span><input type="text" name="displayName" autocomplete="nickname" required maxlength="32" placeholder="Your team name"></label>
+        <label class="account-field"><span>EMAIL ADDRESS</span><input type="email" name="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"></label>
+        <label class="account-field"><span>CREATE PASSWORD</span><input type="password" name="password" autocomplete="new-password" required minlength="8" placeholder="At least 8 characters"></label>
+        <label class="account-field"><span>CONFIRM PASSWORD</span><input type="password" name="confirmPassword" autocomplete="new-password" required minlength="8" placeholder="Enter it again"></label>
+        <p class="account-privacy-note">Use a display name or Roblox username. Do not enter your real name, school, phone number, or home address.</p>
+        <button type="submit" class="account-submit">CREATE ACCOUNT <b>→</b></button>
+      </form>
+      <div id="account-message" class="account-message" role="status" aria-live="polite"></div>
+      <p class="account-terms">By creating an account, you agree to use the site respectfully and follow team rules.</p>
+    </div>
+
+    <div id="signed-in-panel" class="account-card signed-in-card" hidden>
+      <div class="account-card-heading"><div class="account-eyebrow">MEMBER PROFILE</div><h2>YOU'RE <em>SIGNED IN.</em></h2><p>Your account is connected to the USA National Team website.</p></div>
+      <div class="account-profile">
+        <img id="profile-photo" src="/assets/crest.png" alt="" class="account-avatar">
+        <div><strong id="profile-name">Member</strong><span id="profile-email"></span><small id="profile-role">MEMBER ACCOUNT</small></div>
+      </div>
+      <div id="verification-note" class="account-verification" hidden><strong>Verify your email</strong><p>Check your inbox for the verification message before using account features that require a verified address.</p><button id="resend-verification" type="button">RESEND VERIFICATION EMAIL</button></div>
+      <form id="profile-form" class="account-form">
+        <label class="account-field"><span>DISPLAY NAME</span><input type="text" name="displayName" maxlength="32" required></label>
+        <button type="submit" class="account-submit">SAVE PROFILE <b>→</b></button>
+      </form>
+      <div id="admin-access" class="admin-access-card" hidden><div><strong>STAFF ADMIN ACCESS</strong><span>Your account has the administrator role.</span></div><a href="/admin/">OPEN ADMIN CONSOLE ↗</a></div>
+      <div class="account-profile-actions"><a href="/squad/">EXPLORE THE SQUAD</a><button type="button" id="signout-button">SIGN OUT</button></div>
+      <div id="signed-in-message" class="account-message" role="status" aria-live="polite"></div>
+    </div>
+
+    <div class="account-workspace-footer"><span>USA NATIONAL TEAM · MEMBER SERVICES</span><span>SECURED BY FIREBASE AUTHENTICATION</span></div>
+  </section>
+</main>
+</body></html>
