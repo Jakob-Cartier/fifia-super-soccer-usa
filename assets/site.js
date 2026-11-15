@@ -307,6 +307,19 @@
       calendarLink.insertAdjacentElement("afterend", hub);
     }
   }
+  if (nav && !nav.querySelector('a[href="/account/"]')) {
+    const accountLink = document.createElement("a");
+    accountLink.href = "/account/";
+    accountLink.className = "account-nav-link";
+    accountLink.textContent = "Account";
+    if (window.location.pathname.startsWith("/account")) {
+      accountLink.setAttribute("aria-current", "page");
+    }
+    const applyLink = nav.querySelector('a[href="/apply/"]');
+    if (applyLink) applyLink.insertAdjacentElement("beforebegin", accountLink);
+    else nav.append(accountLink);
+  }
+
   if (menuButton && nav) {
     menuButton.addEventListener("click", () => {
       const open = menuButton.getAttribute("aria-expanded") === "true";
