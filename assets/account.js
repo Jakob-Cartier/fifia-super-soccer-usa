@@ -1,4 +1,4 @@
-import { auth, db, firebaseConfigured } from "./firebase-client.js";
+import { auth, db, firebaseConfigured } from "./firebase-client.js?v=2";
 import {
   GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword,
   signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail,
