@@ -174,7 +174,11 @@ if (!firebaseConfigured || !auth) {
     try {
       const credential = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(credential.user, { displayName });
-      await ensureProfile(credential.user);
+      try {
+        await ensureProfile(credential.user);
+      } catch (profileError) {
+        console.warn("Account profile storage is not configured yet.", profileError);
+      }
       await sendEmailVerification(credential.user);
       setMessage("Account created. A verification email has been sent. Check your inbox.", false);
       await renderSignedIn(credential.user);
