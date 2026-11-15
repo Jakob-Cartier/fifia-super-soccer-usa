@@ -100,11 +100,11 @@ The staff workspace is available at `/staff/`. It provides forms to add/remove c
 
 ### One-time Firebase setup
 
-1. Create a Firebase project and register a Web app. Copy its Firebase web configuration into `assets/firebase-config.js` (replace the empty strings). The config values identify the project; they are not administrator credentials.
-2. In Firebase Authentication, enable **Google** and **Email/Password** sign-in methods.
-3. In Authentication settings, add `fifasupersoccer-usnational.futbol` to Authorized domains. Add another hostname only if it actually serves the website.
-4. Create a Cloud Firestore database. Deploy the repository rules from `firestore.rules` using Firebase CLI: `firebase login`, `firebase use --add`, then `firebase deploy --only firestore:rules`. The rules let users access only their own basic profile and let only admin-claim accounts write to `siteContent`.
-5. Commit the Firebase web config and deploy GitHub Pages. Test Google and email/password account creation at `/account/`.
+1. The Firebase Web App has already been registered and its web configuration is committed in `assets/firebase-config.js` for project `fifa-super-soccer-us-n-team`. Do not replace it with a different project's config unless intentionally migrating projects.
+2. In Firebase Authentication → Sign-in method, enable **Google** and **Email/Password** providers, then save. Google sign-in requires the provider to be enabled in the Firebase Console.
+3. The custom domain `fifasupersoccer-usnational.futbol` is already listed under Authorized domains. Add another hostname only if it actually serves the website.
+4. Create a Cloud Firestore database. Deploy the repository rules from `firestore.rules` using Firebase CLI: `firebase login`, `firebase use --add` (select `fifa-super-soccer-us-n-team`), then `firebase deploy --only firestore:rules`. The rules let users access only their own basic profile and let only admin-claim accounts write to `siteContent`.
+5. GitHub Pages will publish the account integration after the repository commit deploys. Then test Google and email/password account creation at `/account/`.
 
 ### Grant the first administrator
 
