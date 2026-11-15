@@ -87,7 +87,41 @@ Leave unknown sections as `null` or empty arrays. Do not create fictional match 
 
 The staff workspace is available at `/staff/`. It provides forms to add/remove calendar events, edit player statistics, add/remove Player of the Match awards, and manage fixtures and final results. Advanced JSON editors cover the complete records and match-data objects, including standings, reports, tournaments, live-match details and matchday announcements.
 
-**Important publishing and security limits:** this website is hosted on static GitHub Pages. The staff workspace is a browser-local editor, not a protected staff login and not a live GitHub publishing service. Drafts are stored in that staff member's browser only. Use the Publish Center to download `events.js`, `records.js`, and `match-data.js`, then replace the matching files in `assets/` and commit them to the repository. A secure multi-user login and direct publishing workflow requires a separate authenticated backend; never put a GitHub token, password, or private key in this website.
+**Publishing limits:** the staff workspace is protected by Firebase Authentication and an administrator custom claim. Its editor still keeps drafts in the administrator's browser and exports `events.js`, `records.js`, and `match-data.js`; an administrator must replace those files in `assets/` and commit them to publish. The account system does not put a GitHub token or repository write key in the browser.
+
+## Accounts, Google sign-in, and administrator access
+
+- Member front screen: `/account/` — Google sign-in, email/password sign-up and sign-in, password reset, account profile, and sign-out.
+- Admin console: `/admin/` — accessible only to a verified Firebase account with the server-assigned `admin: true` custom claim.
+- Staff management: `/staff/` — checks the same admin claim before loading the staff editor.
+- Firebase client configuration: `assets/firebase-config.js`. The web-app config is public client configuration; never put service-account JSON, private keys, GitHub tokens, or other server credentials in it.
+
+### One-time Firebase setup
+
+1. Create a Firebase project and register a Web app. Copy its Firebase web configuration into `assets/firebase-config.js` (replace the empty strings). The config values identify the project; they are not administrator credentials.
+2. In Firebase Authentication, enable **Google** and **Email/Password** sign-in methods.
+3. In Authentication settings, add `fifasupersoccer-usnational.futbol` to Authorized domains. Add another hostname only if it actually serves the website.
+4. Create a Cloud Firestore database. Deploy the repository rules from `firestore.rules` using Firebase CLI: `firebase login`, `firebase use --add`, then `firebase deploy --only firestore:rules`. The rules let users access only their own basic profile and let only admin-claim accounts write to `siteContent`.
+5. Commit the Firebase web config and deploy GitHub Pages. Test Google and email/password account creation at `/account/`.
+
+### Grant the first administrator
+
+1. Create the intended owner account through `/account/` and complete email verification. For Google sign-in, use the intended owner Google account.
+2. In Firebase Console → Authentication → Users, copy that account's **UID**. Do not use a display name as the identifier.
+3. A trusted project owner should install the Admin SDK locally with `npm install firebase-admin`, download a Firebase service-account credential, and keep that credential outside the repository in a secure local folder.
+4. Run the grant script locally from the repository root. PowerShell example:
+
+```powershell
+$env:GOOGLE_APPLICATION_CREDENTIALS="C:\secure\firebase-service-account.json"
+$env:ADMIN_UID="PASTE_THE_TARGET_FIREBASE_UID"
+$env:CONFIRM_ADMIN_GRANT="YES"
+node scripts/grant-admin.mjs
+```
+
+5. Sign out and sign back in. The account page will show **Staff Admin Access**, and `/admin/` and `/staff/` will open for that account.
+6. To revoke the role later, set `ADMIN_UID` and `GOOGLE_APPLICATION_CREDENTIALS`, set `CONFIRM_ADMIN_REVOKE=YES`, and run `node scripts/revoke-admin.mjs`.
+
+**Credential safety:** never upload the service-account JSON or share its contents in chat. The repository `.gitignore` blocks common service-account JSON filenames, but keep the file outside the repository anyway. The admin grant/revoke scripts use Firebase's privileged Admin SDK and should only be run by the project owner or a trusted adult who manages the project. No self-service admin button exists in the public site.
 
 ## Website visual system
 
