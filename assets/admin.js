@@ -1,5 +1,5 @@
 const $ = (selector) => document.querySelector(selector);
-import { auth, firebaseConfigured } from "./firebase-client.js";
+import { auth, firebaseConfigured } from "./firebase-client.js?v=2";
 import { onAuthStateChanged, getIdTokenResult, signOut } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-auth.js";
 
 const loading = document.querySelector("#admin-loading");
