@@ -1731,3 +1731,73 @@ body[data-theme] .theme-control{display:none!important}
   .account-workspace-footer{font-size:6px}
   .admin-access-card{align-items:flex-start;flex-direction:column}
 }
+
+/* === AUTHENTICATED STAFF AND ADMIN ACCESS SCREENS === */
+.staff-auth-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:15px;
+  margin:0 0 16px;padding:13px 16px;background:#142b49;color:#fff;border-left:4px solid #d93c37
+}
+.staff-auth-bar>div:first-child{display:flex;align-items:center;gap:10px}
+.staff-auth-dot{width:8px;height:8px;border-radius:50%;background:#6bd49a;box-shadow:0 0 0 4px #6bd49a22}
+.staff-auth-bar strong,.staff-auth-bar small{display:block}
+.staff-auth-bar strong{font-size:8px;letter-spacing:.14em}
+.staff-auth-bar small{margin-top:4px;color:#c0ccda;font-size:9px}
+.staff-auth-actions{display:flex;align-items:center;gap:14px}
+.staff-auth-actions a,.staff-auth-actions button{padding:0;border:0;background:transparent;color:#ffaaa3;font-size:8px;font-weight:1000;letter-spacing:.1em;cursor:pointer}
+.staff-access-gate{
+  width:min(100%,760px);margin:65px auto;padding:48px 28px;
+  text-align:center;background:#fffefa;border:1px solid #d6d7d2;border-top:5px solid #d93c37;
+  box-shadow:0 20px 55px #14233a16
+}
+.staff-access-icon{font-size:40px;margin-bottom:18px}
+.staff-access-gate h1{margin:13px 0;color:#14233a;font-size:clamp(30px,5vw,52px);letter-spacing:-.07em}
+.staff-access-gate p{max-width:520px;margin:0 auto 20px;color:#687586;font-size:12px;line-height:1.8}
+.staff-access-gate .staff-primary-button,.staff-access-gate .staff-secondary-button{margin:6px}
+.admin-page{min-height:70vh;padding-top:58px;padding-bottom:85px}
+.admin-loading{min-height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:17px;color:#647184;font-size:9px;font-weight:1000;letter-spacing:.17em}
+.admin-spinner{width:38px;height:38px;border:3px solid #d5dce5;border-top-color:#d93c37;border-radius:50%;animation:admin-spin .85s linear infinite}
+@keyframes admin-spin{to{transform:rotate(360deg)}}
+.admin-page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:25px;padding-bottom:25px;border-bottom:1px solid #cecec7}
+.admin-page-head h1{margin:13px 0 9px;color:#14233a;font-size:clamp(48px,7vw,76px);font-weight:1000;letter-spacing:-.08em}
+.admin-page-head h1 em{color:#d93c37;font-style:normal}
+.admin-page-head p{margin:0;color:#6b7786;font-size:12px;line-height:1.7}
+.admin-session-pill{display:flex;align-items:center;gap:8px;padding:10px 12px;background:#e7f2e9;border:1px solid #c7dfcd;color:#286d42;font-size:8px;font-weight:1000;letter-spacing:.12em;white-space:nowrap}
+.admin-session-pill i{width:7px;height:7px;background:#299c58;border-radius:50%}
+.admin-welcome{display:flex;align-items:center;gap:16px;margin:22px 0;padding:19px;background:#142b49;color:#fff;border-left:5px solid #d93c37}
+.admin-welcome-icon{width:50px;height:50px;display:grid;place-items:center;border:1px solid #ffffff34;color:#ff928a;font-size:16px;font-weight:1000}
+.admin-welcome>div:nth-child(2){flex:1;min-width:0;display:grid;gap:4px}
+.admin-welcome>div:nth-child(2) span{color:#ffaaa3;font-size:8px;font-weight:1000;letter-spacing:.13em}
+.admin-welcome>div:nth-child(2) strong{color:#fff;font-size:12px;overflow-wrap:anywhere}
+.admin-welcome>div:nth-child(2) small{color:#bdc9d8;font-size:9px}
+.admin-welcome button{padding:9px 11px;border:1px solid #ffffff3d;background:transparent;color:#fff;font-size:8px;font-weight:1000;letter-spacing:.1em;cursor:pointer}
+.admin-shortcuts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.admin-shortcut{min-height:205px;display:flex;flex-direction:column;align-items:flex-start;padding:22px;background:#fffefa;border:1px solid #d4d5cf;border-top:4px solid #17458a;box-shadow:0 10px 28px #14233a09;transition:transform .2s,box-shadow .2s}
+.admin-shortcut:nth-child(2){border-top-color:#d93c37}
+.admin-shortcut:nth-child(3){border-top-color:#b58b46}
+.admin-shortcut:hover{transform:translateY(-3px);box-shadow:0 15px 35px #14233a17}
+.admin-shortcut>span{color:#d93c37;font-size:8px;font-weight:1000;letter-spacing:.15em}
+.admin-shortcut>strong{margin:16px 0 7px;color:#14233a;font-size:16px;letter-spacing:-.03em}
+.admin-shortcut p{flex:1;margin:0;color:#6b7786;font-size:10px;line-height:1.75}
+.admin-shortcut>b{margin-top:18px;color:#17458a;font-size:8px;letter-spacing:.1em}
+.admin-security-note{margin-top:18px;padding:17px 19px;background:#fff4df;border:1px solid #e6d5b4;border-left:4px solid #c48b31}
+.admin-security-note strong{color:#745622;font-size:8px;letter-spacing:.14em}
+.admin-security-note p{margin:6px 0 0;color:#765f3d;font-size:10px;line-height:1.7}
+.admin-denied{
+  width:min(100%,700px);margin:65px auto;padding:42px 25px;text-align:center;
+  background:#fffefa;border:1px solid #d5d6d1;border-top:5px solid #d93c37;
+  box-shadow:0 20px 55px #14233a15
+}
+.admin-denied[hidden],#admin-console[hidden],#admin-loading[hidden]{display:none!important}
+.admin-denied-icon{font-size:40px;margin-bottom:16px}
+.admin-denied h1{margin:13px 0;color:#14233a;font-size:clamp(30px,5vw,50px);letter-spacing:-.07em}
+.admin-denied p{max-width:510px;margin:0 auto 20px;color:#6b7786;font-size:12px;line-height:1.8}
+.admin-denied .staff-primary-button,.admin-denied .staff-secondary-button{margin:6px}
+@media(max-width:760px){
+  .staff-auth-bar{align-items:flex-start;flex-direction:column}
+  .admin-page{padding-top:35px}
+  .admin-page-head{align-items:flex-start;flex-direction:column}
+  .admin-shortcuts{grid-template-columns:1fr}
+  .admin-shortcut{min-height:0}
+  .admin-welcome{flex-wrap:wrap}
+  .admin-welcome button{margin-left:auto}
+}
