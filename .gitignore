@@ -1,4 +1,8 @@
-# Never commit local Firebase service-account credentials or environment files.
+# Never commit local Firebase service-account credentials, build output, or environment files.
+node_modules/
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
 .env
 .env.*
 !.env.example
