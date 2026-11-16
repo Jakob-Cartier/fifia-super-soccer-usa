@@ -2436,3 +2436,5 @@ body[data-theme] .theme-control{display:none!important}
   .account-card{padding-inline:12px}
   .mobile-app-dock a .dock-label{font-size:5.5px}
 }
+
+@media (min-width: 761px) { .mobile-app-dock { display: none !important; } }
