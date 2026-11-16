@@ -1801,3 +1801,36 @@ body[data-theme] .theme-control{display:none!important}
   .admin-welcome{flex-wrap:wrap}
   .admin-welcome button{margin-left:auto}
 }
+
+/* === PLAYER INACTIVITY NOTICE === */
+.inactivity-nav-link{
+  color:#ffaaa3!important;
+  font-weight:1000!important;
+}
+.inactivity-nav-link:hover,.inactivity-nav-link[aria-current=page]{
+  color:#fff!important;
+  text-decoration:underline;
+  text-decoration-color:#d93c37;
+  text-underline-offset:5px;
+}
+.inactivity-layout .application-form{border-top:4px solid #d93c37}
+.inactivity-layout .form-aside{border-top:4px solid #17458a}
+.inactivity-layout .requirements-block{margin-top:16px}
+.inactivity-layout .form-status{border-left:3px solid #17458a}
+.calendar-absence-cta{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  margin:20px 0;padding:18px 20px;background:#142b49;color:#fff;
+  border-left:5px solid #d93c37;box-shadow:0 10px 28px #14233a14
+}
+.calendar-absence-cta strong{display:block;font-size:12px;letter-spacing:.04em}
+.calendar-absence-cta span{display:block;margin-top:5px;color:#c4cfdd;font-size:10px;line-height:1.5}
+.calendar-absence-cta a{
+  display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;
+  padding:12px 14px;background:#d93c37;color:#fff;border:1px solid #d93c37;
+  font-size:8px;font-weight:1000;letter-spacing:.1em
+}
+.calendar-absence-cta a:hover{background:#b92f2b}
+@media(max-width:620px){
+  .calendar-absence-cta{align-items:flex-start;flex-direction:column}
+  .calendar-absence-cta a{width:100%}
+}
