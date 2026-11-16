@@ -264,6 +264,18 @@
       matchLink.insertAdjacentElement("afterend", calendarLink);
     }
 
+    if (!nav.querySelector('a[href="/inactivity/"]')) {
+      const inactivityLink = document.createElement("a");
+      inactivityLink.href = "/inactivity/";
+      inactivityLink.className = "inactivity-nav-link";
+      inactivityLink.textContent = "Inactivity Notice";
+      if (window.location.pathname.startsWith("/inactivity")) {
+        inactivityLink.setAttribute("aria-current", "page");
+      }
+      const calendarLink = nav.querySelector('a[href="/calendar/"]') || matchLink;
+      calendarLink.insertAdjacentElement("afterend", inactivityLink);
+    }
+
     if (!nav.querySelector(".nav-dropdown")) {
       const hub = document.createElement("div");
       hub.className = "nav-dropdown";
@@ -286,6 +298,7 @@
         ["/reports/", "Match Reports"],
         ["/tournaments/", "Tournament Bracket"],
         ["/matchday/", "Matchday Lineup"],
+        ["/inactivity/", "Player Inactivity Notice"],
         ["/staff/", "Staff Workspace"]
       ];
       hubLinks.forEach(([href, label]) => {
