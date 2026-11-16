@@ -20,6 +20,7 @@ A responsive, multi-page website for the custom USA National Team in Roblox FIFA
 - /depth-chart/ — Current squad position coverage
 - /about/ — Team purpose, Roblox expectations, and membership information
 - /apply/ — Player application form
+- /inactivity/ — Player absence / availability notice for practices, matches and tournaments
 - /support/ — Website support and Tawk.to live chat
 - /account/ — Google/email account sign-up, sign-in, profile and password reset
 - /admin/ — Protected administrator console
@@ -50,6 +51,12 @@ By default, Formspree displays its own confirmation page after a successful subm
 The application collects game-related information only. It does not ask applicants for their real name, age, personal email, phone number, school, or home address. A team moderator should review submissions and contact applicants only through an approved Roblox/team channel.
 
 Formspree guides: https://help.formspree.io/articles/building-your-form/building-an-html-form and https://help.formspree.io/articles/form-and-project-settings/thank-you-redirect
+
+## Player inactivity notices
+
+The player inactivity form is available at `/inactivity/`. Players can notify staff when they cannot attend a practice, match, tournament, tryout, meeting or other team activity. It collects the Roblox username, event type and name, event date or date range, availability status, a general reason category, and optional team-related notes or expected return date. It deliberately does not request personal email addresses, phone numbers, home addresses, school details, passwords, verification codes, or private health details.
+
+The form uses the same Formspree endpoint as the player application form (`https://formspree.io/f/xjywbypd`) and submits as a normal HTML POST. Inactivity notices therefore go to the same Formspree project/inbox configured for applications. A `_gotcha` honeypot field is included. Players should submit a new notice if their availability changes.
 
 ## Team calendar and events
 
