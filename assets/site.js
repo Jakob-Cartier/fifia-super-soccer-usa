@@ -352,6 +352,41 @@
     }));
   }
 
+  // Mobile-only quick navigation dock. The full desktop navigation remains unchanged.
+  if (!document.querySelector(".mobile-app-dock")) {
+    const dock = document.createElement("nav");
+    dock.className = "mobile-app-dock";
+    dock.setAttribute("aria-label", "Quick navigation");
+    const dockLinks = [
+      ["/", "⌂", "HOME"],
+      ["/squad/", "◉", "SQUAD"],
+      ["/matches/", "⚑", "MATCHES"],
+      ["/calendar/", "▦", "CALENDAR"],
+      ["/account/", "●", "ACCOUNT"]
+    ];
+    dockLinks.forEach(([href, symbol, label]) => {
+      const link = document.createElement("a");
+      link.href = href;
+      if (window.location.pathname === href || (href !== "/" && window.location.pathname.startsWith(href))) {
+        link.setAttribute("aria-current", "page");
+      }
+      const icon = document.createElement("span");
+      icon.className = "dock-icon";
+      icon.setAttribute("aria-hidden", "true");
+      icon.textContent = symbol;
+      const text = document.createElement("span");
+      text.className = "dock-label";
+      text.textContent = label;
+      link.append(icon, text);
+      dock.append(link);
+    });
+    if (document.documentElement.classList.contains("launch-locked")) {
+      dock.hidden = true;
+      dock.inert = true;
+    }
+    document.body.append(dock);
+  }
+
   const filterButtons = document.querySelectorAll("[data-filter]");
   const cards = document.querySelectorAll(".player-card[data-position]");
   const empty = document.querySelector("#filter-empty");
