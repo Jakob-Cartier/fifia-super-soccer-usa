@@ -132,6 +132,10 @@ node scripts/grant-admin.mjs
 
 **Credential safety:** never upload the service-account JSON or share its contents in chat. The repository `.gitignore` blocks common service-account JSON filenames, but keep the file outside the repository anyway. The admin grant/revoke scripts use Firebase's privileged Admin SDK and should only be run by the project owner or a trusted adult who manages the project. No self-service admin button exists in the public site.
 
+## Mobile website layout
+
+The website includes a separate phone-sized presentation in the final mobile CSS layer. It keeps the desktop layout unchanged above 760px and adapts page headers, the homepage, squad cards, lineups, match center, calendar, tables, forms, inactivity notices, account screens, admin console, and staff workspace for narrow screens. A compact bottom navigation dock appears on mobile for Home, Squad, Matches, Calendar, and Account. Shared CSS and JavaScript references are versioned across the site's pages to help browsers load the latest mobile styles.
+
 ## Website visual system
 
 The site uses the Fieldhouse Edition design: warm paper backgrounds, deep navy editorial sections, USA red accents, stronger typography and squared-off sports-broadcast panels. The countdown remains a separate dark launch overlay.
